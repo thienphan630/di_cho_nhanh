@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>433651648702-tjde20bslsns13ij3qlheekfq8onj8i0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.433651648702-tjde20bslsns13ij3qlheekfq8onj8i0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAWR_1y0K37pPa1QPsE2hXh3KYG9OoCk7I</string>
+	<key>GCM_SENDER_ID</key>
+	<string>433651648702</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.diChoNhanh</string>
+	<key>PROJECT_ID</key>
+	<string>di-cho-nhanh-de44d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>di-cho-nhanh-de44d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:433651648702:ios:e19331cef17b0ad7bd36ef</string>
+	<key>DATABASE_URL</key>
+	<string>https://di-cho-nhanh-de44d-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
