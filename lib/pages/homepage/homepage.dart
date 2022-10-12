@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../constraints/index.dart';
-import 'widget/banner.dart';
+import '../../constraints/constraints.dart';
+import 'widget/home_widgets.dart';
 import 'widget/search_container.dart';
 
 class Homepage extends StatelessWidget {
@@ -15,11 +15,11 @@ class Homepage extends StatelessWidget {
         appBar: AppBar(
             elevation: 0,
             backgroundColor: kBackgroundColor,
-            leading: const Icon(
-              Icons.reorder,
-              color: kBlackColor,
-              size: 28,
-            ),
+            // leading: const Icon(
+            //   Icons.reorder,
+            //   color: kBlackColor,
+            //   size: 28,
+            // ),
             actions: const [
               CircleAvatar(
                 radius: 25,
@@ -63,49 +63,25 @@ class Homepage extends StatelessWidget {
                 ),
                 const SizedBox(height: kDefaultPadding),
                 const Flexible(
-                  fit: FlexFit.loose,
                   child: BannerCustom(),
                 ),
                 Flexible(
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Danh mục',
-                      style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w600,
-                          fontSize: 15),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(16.0, 16.0, 0, 4.0),
+                      child: Text(
+                        'Danh mục',
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15),
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          width: 120,
-                          height: 110,
-                          decoration: const BoxDecoration(
-                              color: Color.fromRGBO(132, 203, 255, 0.8),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16)),
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: Offset(0, 4),
-                                    blurRadius: 4,
-                                    color: Color.fromRGBO(0, 0, 0, 0.25))
-                              ]),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
-                              CircleAvatar(minRadius: 40),
-                              Text(
-                                'Thịt',
-                                style: TextStyle(
-                                    fontSize: 10, fontWeight: FontWeight.w600),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    )
+                    SizedBox(
+                        height: 130,
+                        child: CategoriesCardList())
                   ],
                 ))
               ],
@@ -117,3 +93,4 @@ class Homepage extends StatelessWidget {
     );
   }
 }
+

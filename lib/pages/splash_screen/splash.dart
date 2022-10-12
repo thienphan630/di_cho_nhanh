@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constraints/index.dart';
+import '../../constraints/constraints.dart';
 import 'widgets/splash_slider.dart';
 
 

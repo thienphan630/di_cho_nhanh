@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import '../constraints/index.dart';
+import '../constraints/constraints.dart';
 import '../pages/homepage/homepage.dart';
 import '../providers/bottom_nav_provider.dart';
 
