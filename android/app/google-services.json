@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "433651648702",
+    "firebase_url": "https://di-cho-nhanh-de44d-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "di-cho-nhanh-de44d",
+    "storage_bucket": "di-cho-nhanh-de44d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433651648702:android:2bc358c0ddef9799bd36ef",
+        "android_client_info": {
+          "package_name": "com.example.di_cho_nhanh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433651648702-urc0l1hbc4vkqd7monc20v2m34e8svdk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2FmHfzpOR0qmFBoFLZh1UccSgXyE_1NE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433651648702-urc0l1hbc4vkqd7monc20v2m34e8svdk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "433651648702-tjde20bslsns13ij3qlheekfq8onj8i0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.diChoNhanh"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
