@@ -9,31 +9,16 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
             elevation: 0,
             backgroundColor: kBackgroundColor,
-            // leading: const Icon(
-            //   Icons.reorder,
-            //   color: kBlackColor,
-            //   size: 28,
-            // ),
             actions: const [
               CircleAvatar(
                 radius: 25,
                 backgroundImage: AssetImage("assets/images/cat.jpg"),
               ),
-              // Container(
-              //   margin: const EdgeInsets.only(right: kDefaultPadding),
-              //   width: 42,
-              //   decoration: const BoxDecoration(
-              //       image: DecorationImage(
-              //           fit: BoxFit.fitWidth,
-              //           image: AssetImage('assets/images/cat.jpg')),
-              //       borderRadius: BorderRadius.all(Radius.circular(50))),
-              // )
             ],
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,20 +53,11 @@ class Homepage extends StatelessWidget {
                 Flexible(
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(16.0, 16.0, 0, 4.0),
-                      child: Text(
-                        'Danh mục',
-                        style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15),
-                      ),
-                    ),
-                    SizedBox(
-                        height: 130,
-                        child: CategoriesCardList())
+                  children: [
+                    _topic('Danh mục'),
+                    const SizedBox(height: 130, child: CategoriesCardList()),
+                    _topic('Tìm kiếm hàng đầu'),
+                    const SizedBox(height: 200, child: TopSearch())
                   ],
                 ))
               ],
@@ -94,3 +70,13 @@ class Homepage extends StatelessWidget {
   }
 }
 
+Widget _topic(String topic) {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0, 4.0),
+    child: Text(
+      topic,
+      style: const TextStyle(
+          fontFamily: 'Poppins', fontWeight: FontWeight.w600, fontSize: 15),
+    ),
+  );
+}
