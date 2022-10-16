@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/button.dart';
-import '../../../constraints/index.dart';
+import '../../../constraints/constraints.dart';
 import 'input.dart';
 
 class FormAuth extends StatefulWidget {

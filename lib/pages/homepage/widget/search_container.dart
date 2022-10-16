@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../constraints/index.dart';
+import '../../../constraints/constraints.dart';
 
 class SearchContainer extends StatelessWidget {
   const SearchContainer({
@@ -12,7 +12,6 @@ class SearchContainer extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 2 * kDefaultPadding),
       width: double.infinity,
-      // width: 100,
       height: 44,
       decoration: const BoxDecoration(
           color: Colors.white,

@@ -20,10 +20,9 @@ class _FirebaseState extends State<Firebase> {
           child: ElevatedButton(
         onPressed: () async {
           try {
-            print('abc');
             await ref.get().then((value) {
               var name = value.value;
-              print(name.toString());
+              log(name.toString());
             });
             log('get successful');
           } catch (e) {
