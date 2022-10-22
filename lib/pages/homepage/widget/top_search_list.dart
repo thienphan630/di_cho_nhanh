@@ -11,10 +11,10 @@ class TopSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: categories.length,
+      itemCount: products.length,
       itemBuilder: (context, index) {
         return TopSearchItem(
-          name: categories[index]['name'].toString(),
+          name: products[index]['name'].toString(),
           onTap: () {},
         );
       },
