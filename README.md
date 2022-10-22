@@ -14,7 +14,7 @@ Follow a few resources to get you started this Flutter project:
 Steps to run the project:
 
 1. _Turn on the emulator_
-2. _Open terminal and run this command_
+2. _Open terminal in vscode and run this command_
 
 - `flutter doctor` to check if there are any errors.
 - `flutter pub get` to get package
