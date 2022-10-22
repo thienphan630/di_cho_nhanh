@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../constraints/constraints.dart';
+
 import '../pages/categories_screen/categories_screen.dart';
 import '../pages/favorite/favorite_items.dart';
 import '../pages/homepage/homepage.dart';

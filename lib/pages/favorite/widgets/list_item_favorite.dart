@@ -11,7 +11,9 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+
       itemCount: products.length,
+
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisSpacing: 20, crossAxisCount: 2, childAspectRatio: 2 / 3),
       itemBuilder: (context, index) {

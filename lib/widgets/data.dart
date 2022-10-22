@@ -42,4 +42,3 @@ const categories = [
       {'name': 'Xà lách', 'price': 123.0},
     ]
   }
-];
