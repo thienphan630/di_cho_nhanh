@@ -24,14 +24,14 @@ Widget favoriteItem(index) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                products[index]['name'].toString(),
+                categories[index]['name'].toString(),
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10,
                     fontWeight: FontWeight.w400),
               ),
               Text(
-                '${products[index]["price"]} đ/Kg',
+                '${categories[index]["price"]} đ/Kg',
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10,
