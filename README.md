@@ -10,6 +10,7 @@ Follow a few resources to get you started this Flutter project:
 
 - [Install Flutter SDK](https://docs.flutter.dev/get-started/install)
 - [Set up an editor](https://docs.flutter.dev/get-started/editor)
+- [Install Android studio and set up Android device](https://docs.flutter.dev/get-started/install/windows#android-setup)
 
 Steps to run the project:
 
