@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Firebase extends StatefulWidget {
@@ -11,7 +11,7 @@ class Firebase extends StatefulWidget {
 }
 
 class _FirebaseState extends State<Firebase> {
-  DatabaseReference ref = FirebaseDatabase.instance.ref();
+  var db = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +20,10 @@ class _FirebaseState extends State<Firebase> {
           child: ElevatedButton(
         onPressed: () async {
           try {
-            await ref.get().then((value) {
-              var name = value.value;
-              log(name.toString());
+            await db.collection("users").get().then((event) {
+              for (var doc in event.docs) {
+                log("${doc.id} => ${doc.data()}");
+              }
             });
             log('get successful');
           } catch (e) {

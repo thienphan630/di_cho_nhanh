@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../constraints/styles.dart';
-import '../../homepage/widget/home_widgets.dart';
 
-Widget favoriteItem(index) {
+Widget favoriteItem(String name, String imageURL, num price) {
   return Container(
     height: 200,
     margin: const EdgeInsets.symmetric(vertical: kDefaultPadding),
@@ -13,10 +12,10 @@ Widget favoriteItem(index) {
       borderRadius: BorderRadius.all(Radius.circular(16)),
     ),
     child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-      const CircleAvatar(
-        maxRadius: 50,
-        backgroundImage: AssetImage('assets/images/meat.png'),
-      ),
+      CircleAvatar(
+          maxRadius: 50,
+          backgroundImage: NetworkImage(
+              'https://drive.google.com/uc?export=view&id=$imageURL')),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -24,14 +23,14 @@ Widget favoriteItem(index) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                products[index]['name'].toString(),
+                name,
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10,
                     fontWeight: FontWeight.w400),
               ),
               Text(
-                '${products[index]["price"]} đ/Kg',
+                '$price đ/Kg',
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 10,
