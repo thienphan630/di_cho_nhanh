@@ -1,20 +1,23 @@
+import 'package:di_cho_nhanh/providers/favorite_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TopSearchItem extends StatefulWidget {
   const TopSearchItem({
     Key? key,
     required this.name,
     required this.onTap,
+    required this.onFavoriteTap,
   }) : super(key: key);
   final String name;
   final VoidCallback onTap;
+  final VoidCallback onFavoriteTap;
 
   @override
   State<TopSearchItem> createState() => _TopSearchItemState();
 }
 
 class _TopSearchItemState extends State<TopSearchItem> {
-  bool _isFavorite = false;
   @override
   void initState() {
     super.initState();
@@ -22,6 +25,8 @@ class _TopSearchItemState extends State<TopSearchItem> {
 
   @override
   Widget build(BuildContext context) {
+    // bool isFavorite =
+    //     Provider.of<FavoriteProvider>(context, listen: false).isFavorite;
     return GestureDetector(
       onTap: widget.onTap,
       child: Stack(
@@ -61,16 +66,18 @@ class _TopSearchItemState extends State<TopSearchItem> {
                         ),
                       ]),
                       GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _isFavorite = !_isFavorite;
-                          });
-                        },
-                        child: Icon(
-                          _isFavorite ? Icons.favorite : Icons.favorite_border,
-                          color: _isFavorite ? Colors.red : Colors.white,
-                          size: 16,
-                        ),
+                        onTap: widget.onFavoriteTap,
+                        child: Consumer<FavoriteProvider>(
+                            builder: (_, favorite, __) {
+                          return Icon(
+                            favorite.isFavorite
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color:
+                                favorite.isFavorite ? Colors.red : Colors.white,
+                            size: 16,
+                          );
+                        }),
                       )
                     ],
                   ),

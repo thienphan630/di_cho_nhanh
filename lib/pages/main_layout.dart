@@ -9,7 +9,7 @@ class MainLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int index = context.watch<BottomIndex>().getBottomIndex();
+    int index = context.watch<BottomIndex>().bottomIndex;
     return Scaffold(
       bottomNavigationBar: const CustomBottomNavBar(),
       body: nav(index),

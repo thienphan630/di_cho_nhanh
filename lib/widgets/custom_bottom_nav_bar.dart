@@ -7,6 +7,7 @@ import '../pages/categories_screen/categories_screen.dart';
 import '../pages/favorite/favorite_items.dart';
 import '../pages/homepage/homepage.dart';
 import '../pages/payment/cart_screen.dart';
+import '../pages/personal_screen/personal_screen.dart';
 import '../providers/bottom_nav_provider.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
@@ -29,7 +30,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       backgroundColor: kPrimaryColor,
       fixedColor: kPrimaryColor,
       unselectedItemColor: kGrayColor,
-      currentIndex: context.watch<BottomIndex>().getBottomIndex(),
+      currentIndex: context.watch<BottomIndex>().bottomIndex,
       onTap: _onTap,
       items: const [
         BottomNavigationBarItem(
@@ -68,7 +69,7 @@ Widget nav(int index) {
     case 3:
       return const ShoppingCart();
     case 4:
-      return const Center(child: Text('Personal'));
+      return const Personal();
     default:
       return const Center(child: Text('Default'));
   }

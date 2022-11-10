@@ -1,3 +1,4 @@
+import 'package:di_cho_nhanh/providers/favorite_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,10 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-        create: (context) => BottomIndex(),
+        create: (_) => BottomIndex(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => FavoriteProvider(),
       )
     ],
     child: const MyApp(),

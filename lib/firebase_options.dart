@@ -50,22 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC2FmHfzpOR0qmFBoFLZh1UccSgXyE_1NE',
-    appId: '1:433651648702:android:2bc358c0ddef9799bd36ef',
-    messagingSenderId: '433651648702',
-    projectId: 'di-cho-nhanh-de44d',
-    databaseURL: 'https://di-cho-nhanh-de44d-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'di-cho-nhanh-de44d.appspot.com',
+    apiKey: 'AIzaSyAFGQq4zd4f8TB8lhcmzhYeB8whJy_zkrA',
+    appId: '1:103371153069:android:3f38d07c9e108fa724f024',
+    messagingSenderId: '103371153069',
+    projectId: 'di-cho-nhanh-c2659',
+    storageBucket: 'di-cho-nhanh-c2659.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAWR_1y0K37pPa1QPsE2hXh3KYG9OoCk7I',
-    appId: '1:433651648702:ios:e19331cef17b0ad7bd36ef',
-    messagingSenderId: '433651648702',
-    projectId: 'di-cho-nhanh-de44d',
-    databaseURL: 'https://di-cho-nhanh-de44d-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'di-cho-nhanh-de44d.appspot.com',
-    iosClientId: '433651648702-tjde20bslsns13ij3qlheekfq8onj8i0.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAQTMvxS7s_KaqZcm5C3ISJLiGbrR44t-w',
+    appId: '1:103371153069:ios:e2b69b7006def55c24f024',
+    messagingSenderId: '103371153069',
+    projectId: 'di-cho-nhanh-c2659',
+    storageBucket: 'di-cho-nhanh-c2659.appspot.com',
+    iosClientId: '103371153069-m7qok7tgq2fal1t439sjroarf8g4pdrp.apps.googleusercontent.com',
     iosBundleId: 'com.example.diChoNhanh',
   );
 }

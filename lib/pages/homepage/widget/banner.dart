@@ -27,7 +27,7 @@ class BannerCustom extends StatelessWidget {
             children: [
               const Spacer(),
               Container(
-                height: size.height / 6,
+                height: size.height / 5,
                 margin:
                     const EdgeInsets.symmetric(horizontal: 2 * kDefaultPadding),
                 padding: const EdgeInsets.all(kDefaultPadding),
@@ -53,6 +53,8 @@ class BannerCustom extends StatelessWidget {
                     SizedBox(height: 7),
                     Text(
                       'Vì sức khỏe cộng đồng, phát triển kinh tế xã hội. “ Sản xuất, kinh doanh, tiêu dùng rau, thịt an toàn “',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
                       style: TextStyle(
                           color: kBlackColor,
                           fontFamily: 'Poppins',
