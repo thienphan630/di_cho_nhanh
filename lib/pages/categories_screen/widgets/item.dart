@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class Item extends StatelessWidget {
   const Item({
-    required this.name,
     Key? key,
+    required this.name,
     required this.onTap,
     required this.price,
+    required this.imageURL,
   }) : super(key: key);
   final String name;
-  final double price;
+  final String imageURL;
+  final num price;
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
@@ -30,9 +32,11 @@ class Item extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const CircleAvatar(
-                minRadius: 40,
-                backgroundImage: AssetImage('assets/images/meat.png')),
+            CircleAvatar(
+              minRadius: 40,
+              backgroundImage: NetworkImage(
+                  'https://drive.google.com/uc?export=view&id=$imageURL'),
+            ),
             Text(
               name,
               style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w600),

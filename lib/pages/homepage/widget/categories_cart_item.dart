@@ -31,9 +31,10 @@ class CategoriesCartItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             CircleAvatar(
-                minRadius: 40,
-                backgroundImage: NetworkImage(
-                    'https://drive.google.com/uc?export=view&id=$imageURL')),
+              minRadius: 40,
+              backgroundImage: NetworkImage(
+                  'https://drive.google.com/uc?export=view&id=$imageURL'),
+            ),
             Text(
               name,
               style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w600),

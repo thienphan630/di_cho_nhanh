@@ -7,7 +7,6 @@ import '../pages/categories_screen/categories_screen.dart';
 import '../pages/favorite/favorite_items.dart';
 import '../pages/homepage/homepage.dart';
 import '../pages/payment/cart_screen.dart';
-import '../pages/personal_screen/personal_screen.dart';
 import '../providers/bottom_nav_provider.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
@@ -69,7 +68,7 @@ Widget nav(int index) {
     case 3:
       return const ShoppingCart();
     case 4:
-      return const Personal();
+      return const Center(child: Text('Default'));
     default:
       return const Center(child: Text('Default'));
   }

@@ -12,4 +12,10 @@ class RoutePath {
 
   ///signup
   static const String signup = '/signup';
+
+  ///product
+  static const String product = '/product';
+
+  ///list product
+  static const String listProduct = '/list_product';
 }

@@ -1,8 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/data.dart';
 import '../../widgets/search_appbar.dart';
-import 'widgets/categorise_widgets.dart';
+import 'widgets/categories_widgets.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -10,6 +10,9 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    //firebase
+    CollectionReference<Map<String, dynamic>> categories =
+        FirebaseFirestore.instance.collection('Categories');
     return Scaffold(
       backgroundColor: const Color(0xFFF0EFEF),
       body: Stack(children: [
@@ -28,25 +31,30 @@ class CategoriesScreen extends StatelessWidget {
           body: Column(children: [
             const BannerCategories(),
             Flexible(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _topic('Cá'),
-                    abc(),
-                    _topic('Thịt'),
-                    abc(),
-                    _topic('Rau'),
-                    abc(),
-                  ],
-                ),
-              ),
-            )
-            // Item(
-            //   name: 'Cá Tầm',
-            //   onTap: () {},
-            //   price: 253000,
-            // ),
+                child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+              stream: categories.snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else {
+                  return snapshot.hasData
+                      ? ListView.builder(
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                categoriesName(snapshot
+                                    .data!.docs[index]['name']
+                                    .toString()),
+                                listProducts(categories.doc().id.toString()),
+                              ],
+                            );
+                          })
+                      : const Center(child: Text('No data'));
+                }
+              },
+            )),
           ]),
         )
       ]),
@@ -54,7 +62,7 @@ class CategoriesScreen extends StatelessWidget {
   }
 }
 
-Widget _topic(String topic) {
+Widget categoriesName(String topic) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0, 4.0),
     child: Text(
@@ -62,21 +70,5 @@ Widget _topic(String topic) {
       style: const TextStyle(
           fontFamily: 'Poppins', fontWeight: FontWeight.w600, fontSize: 15),
     ),
-  );
-}
-
-Widget abc() {
-  return SizedBox(
-    height: 160,
-    child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: products.length,
-        itemBuilder: (context, index) {
-          return Item(
-            name: products[index]['name'].toString(),
-            price: products[index]['price'] as double,
-            onTap: () {},
-          );
-        }),
   );
 }
