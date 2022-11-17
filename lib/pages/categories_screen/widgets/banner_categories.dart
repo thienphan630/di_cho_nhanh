@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'categorise_widgets.dart';
+import 'categories_widgets.dart';
 
 class BannerCategories extends StatelessWidget {
   const BannerCategories({
@@ -16,15 +16,15 @@ class BannerCategories extends StatelessWidget {
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20))),
+              topLeft: Radius.circular(20), bottomRight: Radius.circular(20))),
       child: GridView.builder(
         itemCount: 5,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            childAspectRatio: 1,
-            mainAxisSpacing: 2,
-            mainAxisExtent: 68),
+          crossAxisCount: 3,
+          childAspectRatio: 1,
+          mainAxisSpacing: 2,
+          mainAxisExtent: 68,
+        ),
         itemBuilder: (context, index) {
           return const ItemCategoriesBanner(name: 'Thịt');
         },
