@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +11,11 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    //firebase
     CollectionReference<Map<String, dynamic>> categories =
         FirebaseFirestore.instance.collection('Categories');
+
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF0EFEF),
       body: Stack(children: [
@@ -28,34 +31,37 @@ class CategoriesScreen extends StatelessWidget {
         Scaffold(
           appBar: appBarSearch(),
           backgroundColor: Colors.transparent,
-          body: Column(children: [
-            const BannerCategories(),
-            Flexible(
-                child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-              stream: categories.snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                } else {
-                  return snapshot.hasData
-                      ? ListView.builder(
-                          itemCount: snapshot.data!.docs.length,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                categoriesName(snapshot
-                                    .data!.docs[index]['name']
-                                    .toString()),
-                                listProducts(categories.doc().id.toString()),
-                              ],
-                            );
-                          })
-                      : const Center(child: Text('No data'));
-                }
-              },
-            )),
-          ]),
+          body: Column(
+            children: [
+              const BannerCategories(),
+              Flexible(
+                  child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                stream: categories.snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else {
+                    return snapshot.hasData
+                        ? ListView.builder(
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context, index) {
+                              var data = snapshot.data!.docs[index];
+                              var type = data.get('type');
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  categoriesName(data.get('name')),
+                                  listProducts(type),
+                                ],
+                              );
+                            },
+                          )
+                        : const Center(child: Text('No data'));
+                  }
+                },
+              )),
+            ],
+          ),
         )
       ]),
     );
