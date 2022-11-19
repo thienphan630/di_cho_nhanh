@@ -19,7 +19,6 @@ class Item extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         width: 120,
-        // height: 142,
         decoration: const BoxDecoration(
             color: Color.fromRGBO(132, 203, 255, 0.8),
             borderRadius: BorderRadius.all(Radius.circular(16)),

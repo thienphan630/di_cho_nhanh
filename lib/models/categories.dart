@@ -3,9 +3,7 @@ enum ProductType {
   fish,
   meat,
   spice,
-  shrimp,
   fruit,
-  crab,
   vegetable,
   seafood,
 }
@@ -18,12 +16,8 @@ String categories(ProductType type) {
       return 'meat';
     case ProductType.spice:
       return 'spice';
-    case ProductType.shrimp:
-      return 'shrimp';
     case ProductType.fruit:
       return 'fruit';
-    case ProductType.crab:
-      return 'crab';
     case ProductType.vegetable:
       return 'vegetable';
     case ProductType.seafood:
@@ -41,12 +35,8 @@ String categoriName(ProductType type) {
       return 'Thịt';
     case ProductType.spice:
       return 'Gia Vị';
-    case ProductType.shrimp:
-      return 'Tôm';
     case ProductType.fruit:
       return 'Trái cây';
-    case ProductType.crab:
-      return 'Cua';
     case ProductType.vegetable:
       return 'Rau';
     case ProductType.seafood:
@@ -65,12 +55,8 @@ switch (type) {
     case 'spice':
       return ProductType.spice;
     case 'shrimp':
-      return ProductType.shrimp;
-    case 'fruit':
       return ProductType.fruit;
     case 'crab':
-      return ProductType.crab;
-    case 'vegetable':
       return ProductType.vegetable;
     case 'seafood':
       return ProductType.seafood;
