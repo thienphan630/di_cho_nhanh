@@ -6,7 +6,7 @@ import '../constraints/constraints.dart';
 import '../pages/categories_screen/categories_screen.dart';
 import '../pages/favorite/favorite_items.dart';
 import '../pages/homepage/homepage.dart';
-import '../pages/payment/cart_screen.dart';
+import '../pages/cart_screen/cart_screen.dart';
 import '../providers/bottom_nav_provider.dart';
 
 class CustomBottomNavBar extends StatefulWidget {

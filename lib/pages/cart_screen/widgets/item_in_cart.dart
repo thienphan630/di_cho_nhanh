@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 
 import '../../../constraints/styles.dart';
 
-class ItemInCart extends StatefulWidget {
+class ItemInCart extends StatelessWidget {
   const ItemInCart({
-    Key? key,
+    super.key,
     required this.name,
     required this.price,
     required this.quantity,
-  }) : super(key: key);
+    required this.imageURL,
+    required this.onMinusTap,
+    required this.onPlusTap,
+  });
   final String name;
-  final double price;
-  final double quantity;
+  final String imageURL;
+  final num price;
+  final num quantity;
+  final VoidCallback onMinusTap;
+  final VoidCallback onPlusTap;
 
-  @override
-  State<ItemInCart> createState() => _ItemInCartState();
-}
-
-class _ItemInCartState extends State<ItemInCart> {
-  double _quantity = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,16 +27,17 @@ class _ItemInCartState extends State<ItemInCart> {
       child: Row(
         children: [
           Container(
-            width: 120,
-            height: 150,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-                color: Color(0xFF84CBFF),
-                borderRadius: BorderRadius.all(Radius.circular(16))),
-            child: const CircleAvatar(
+              width: 120,
+              height: 150,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                  color: Color(0xFF84CBFF),
+                  borderRadius: BorderRadius.all(Radius.circular(16))),
+              child: CircleAvatar(
                 maxRadius: 42,
-                backgroundImage: AssetImage('assets/images/meat.png')),
-          ),
+                backgroundImage: NetworkImage(
+                    'https://drive.google.com/uc?export=view&id=$imageURL'),
+              )),
           Container(
             width: 200,
             height: 100,
@@ -55,10 +56,10 @@ class _ItemInCartState extends State<ItemInCart> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.name,
+                      Text(name,
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w700)),
-                      Text('${widget.price} đ/Kg',
+                      Text('$price đ/Kg',
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w500)),
                     ],
@@ -69,28 +70,30 @@ class _ItemInCartState extends State<ItemInCart> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GestureDetector(
-                        onTap: (() {
-                          setState(() {
-                            _quantity -= 0.1;
-                          });
-                        }),
+                        onTap: onMinusTap,
                         child: const Text(
                           '-',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                       ),
+                      // Expanded(
+                      //   child: TextFormField(
+                      //     // controller: controller,
+                      //     keyboardType: TextInputType.number,
+                      //     decoration: const InputDecoration(
+                      //       border: InputBorder.none,
+                      //       isCollapsed: true,
+                      //     ),
+                      //   ),
+                      // ),
                       Text(
-                        _quantity.toStringAsFixed(1),
+                        quantity.toStringAsFixed(1),
                         style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w500),
                       ),
                       GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _quantity += 0.1;
-                          });
-                        },
+                        onTap: onPlusTap,
                         child: const Text(
                           '+',
                           style: TextStyle(
