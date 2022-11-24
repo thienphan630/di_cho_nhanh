@@ -46,17 +46,17 @@ String categoriName(ProductType type) {
   }
 }
 
-ProductType toProductType(String type){
-switch (type) {
+ProductType toProductType(String type) {
+  switch (type) {
     case 'fish':
       return ProductType.fish;
     case 'meat':
       return ProductType.meat;
     case 'spice':
       return ProductType.spice;
-    case 'shrimp':
+    case 'fruit':
       return ProductType.fruit;
-    case 'crab':
+    case 'vegetable':
       return ProductType.vegetable;
     case 'seafood':
       return ProductType.seafood;
