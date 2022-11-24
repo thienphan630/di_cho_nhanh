@@ -10,7 +10,7 @@ class ItemInCart extends StatelessWidget {
     required this.quantity,
     required this.imageURL,
     required this.onMinusTap,
-    required this.onPlusTap,
+    required this.onPlusTap, required this.onDeleteTap,
   });
   final String name;
   final String imageURL;
@@ -18,17 +18,19 @@ class ItemInCart extends StatelessWidget {
   final num quantity;
   final VoidCallback onMinusTap;
   final VoidCallback onPlusTap;
+  final VoidCallback onDeleteTap;
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(kDefaultPadding),
       child: Row(
         children: [
           Container(
-              width: 120,
-              height: 150,
+              width: size.width / 3.5,
+              height: 160,
               alignment: Alignment.center,
               decoration: const BoxDecoration(
                   color: Color(0xFF84CBFF),
@@ -39,7 +41,7 @@ class ItemInCart extends StatelessWidget {
                     'https://drive.google.com/uc?export=view&id=$imageURL'),
               )),
           Container(
-            width: 200,
+            width: size.width * 3 / 5,
             height: 100,
             decoration: const BoxDecoration(
                 color: Colors.white,
@@ -72,21 +74,11 @@ class ItemInCart extends StatelessWidget {
                       GestureDetector(
                         onTap: onMinusTap,
                         child: const Text(
-                          '-',
+                          '- ',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                       ),
-                      // Expanded(
-                      //   child: TextFormField(
-                      //     // controller: controller,
-                      //     keyboardType: TextInputType.number,
-                      //     decoration: const InputDecoration(
-                      //       border: InputBorder.none,
-                      //       isCollapsed: true,
-                      //     ),
-                      //   ),
-                      // ),
                       Text(
                         quantity.toStringAsFixed(1),
                         style: const TextStyle(
@@ -95,11 +87,15 @@ class ItemInCart extends StatelessWidget {
                       GestureDetector(
                         onTap: onPlusTap,
                         child: const Text(
-                          '+',
+                          ' +',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                       ),
+                      GestureDetector(
+                        onTap: onDeleteTap,
+                        child: const Icon(Icons.delete),
+                      )
                     ],
                   ),
                 )

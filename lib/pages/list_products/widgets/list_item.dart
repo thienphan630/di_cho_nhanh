@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:di_cho_nhanh/models/categories.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/add_to_cart_model.dart';
 import '../../../models/product_agrument.dart';
 import 'item.dart';
 
@@ -41,11 +42,32 @@ class ListItems extends StatelessWidget {
                         price: data.get('price'),
                         onTap: () {
                           Navigator.pushNamed(context, '/product',
-                              arguments: ProductAgrument(
-                                  snapshot.data!.docs[index].id));
+                              arguments: ProductAgrument(data.id));
                         },
                         onBuyTap: () {
-                          log('Add to card');
+                          CollectionReference cart = FirebaseFirestore.instance
+                              .collection('users')
+                              .doc('9AxMMbQDQetVKbp9kuWA')
+                              .collection('cart');
+                          cart
+                              .add(
+                                AddToCart(
+                                  id: data.id,
+                                  name: data['name'],
+                                  image: data['image'],
+                                  price: data['price'],
+                                  quantity: 1.0,
+                                ).toMap(),
+                              )
+                              .whenComplete(() => ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                      content: Text('Đã thêm vào giỏ hàng'))))
+                              .catchError((e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content:
+                                        Text('Không thể thêm hàng vào giỏ')));
+                          });
                         },
                       );
                     },

@@ -12,6 +12,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  ErrorWidget.builder =
+      (details) => const Center(child: CircularProgressIndicator());
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
