@@ -18,4 +18,7 @@ class RoutePath {
 
   ///list product
   static const String listProduct = '/list_product';
+
+  ///add product
+  static const String addProduct = '/add_product';
 }

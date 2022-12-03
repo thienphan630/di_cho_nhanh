@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 class Item extends StatelessWidget {
@@ -31,10 +33,14 @@ class Item extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            CircleAvatar(
-              minRadius: 40,
-              backgroundImage: NetworkImage(
-                  'https://drive.google.com/uc?export=view&id=$imageURL'),
+            ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(50)),
+              child: Image.memory(
+                base64Decode(imageURL),
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
             ),
             Text(
               name,

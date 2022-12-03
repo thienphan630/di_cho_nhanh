@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import '../../../constraints/styles.dart';
@@ -23,12 +25,16 @@ class ProductDetailContent extends StatelessWidget {
   final VoidCallback buyNowTap;
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.all(kDefaultPadding),
-          child: Image.network(
-              'https://drive.google.com/uc?export=view&id=$imageURL'),
+          child: Image.memory(
+            base64Decode(imageURL),
+            width: size.width - 32,
+            fit: BoxFit.cover,
+          ),
         ),
         ProductDetail(name: name, price: price, sold: sold),
         const Delivery(),

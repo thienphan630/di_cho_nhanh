@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/product_agrument.dart';
+import '../../../models/agruments/product_agrument.dart';
 import 'categories_widgets.dart';
 
 Widget listProducts(String type) {

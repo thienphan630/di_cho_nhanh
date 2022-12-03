@@ -22,12 +22,13 @@ class ShoppingCart extends StatelessWidget {
           stream: cart.snapshots(),
           builder: (context, snapshot) {
             num total = 0;
-            for (var element in snapshot.data!.docs) {
-              total += (element.get('price') * element.get('quantity'));
-            }
+
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else {
+              for (var element in snapshot.data!.docs) {
+                total += (element.get('price') * element.get('quantity'));
+              }
               return snapshot.hasData
                   ? Column(
                       children: [
@@ -43,43 +44,19 @@ class ShoppingCart extends StatelessWidget {
                               quantity: data.get('quantity'),
                               imageURL: data.get('image'),
                               onMinusTap: () {
-                                cart.doc(data.id).update(
-                                    {'quantity': data.get('quantity') - 0.5});
+                                if (data.get('quantity') == 0.5) {
+                                  deleteTap(context, cart, data);
+                                } else {
+                                  cart.doc(data.id).update(
+                                      {'quantity': data.get('quantity') - 0.5});
+                                }
                               },
                               onPlusTap: () {
                                 cart.doc(data.id).update(
                                     {'quantity': data.get('quantity') + 0.5});
                               },
                               onDeleteTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12))),
-                                      elevation: 24,
-                                      content: const Text(
-                                          'Bạn có chắc chắn muốn xóa món hàng này không?'),
-                                      actions: [
-                                        TextButton(
-                                            onPressed: () {
-                                              cart.doc(data.id).delete().then(
-                                                    (value) =>
-                                                        Navigator.of(context)
-                                                            .pop(),
-                                                  );
-                                            },
-                                            child: const Text('Có')),
-                                        TextButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: const Text('Không'))
-                                      ],
-                                    );
-                                  },
-                                );
+                                deleteTap(context, cart, data);
                               },
                             );
                           },
@@ -96,4 +73,33 @@ class ShoppingCart extends StatelessWidget {
           }),
     );
   }
+}
+
+deleteTap(BuildContext context, CollectionReference<Map<String, dynamic>> cart,
+    QueryDocumentSnapshot<Map<String, dynamic>> data) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12))),
+        elevation: 24,
+        content: const Text('Bạn có chắc chắn muốn xóa món hàng này không?'),
+        actions: [
+          TextButton(
+              onPressed: () {
+                cart.doc(data.id).delete().then(
+                      (value) => Navigator.of(context).pop(),
+                    );
+              },
+              child: const Text('Có')),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Không'))
+        ],
+      );
+    },
+  );
 }

@@ -8,7 +8,7 @@ enum ProductType {
   seafood,
 }
 
-String categories(ProductType type) {
+String productCategories(ProductType type) {
   switch (type) {
     case ProductType.fish:
       return 'fish';
