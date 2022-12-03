@@ -1,3 +1,4 @@
+import 'package:di_cho_nhanh/pages/add_product_screen/add_product_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -68,7 +69,7 @@ Widget nav(int index) {
     case 3:
       return const ShoppingCart();
     case 4:
-      return const Center(child: Text('Default'));
+      return const AddProductScreen();
     default:
       return const Center(child: Text('Default'));
   }

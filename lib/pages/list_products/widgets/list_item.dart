@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:di_cho_nhanh/models/categories.dart';
+import 'package:di_cho_nhanh/models/agruments/product_type.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/add_to_cart_model.dart';
-import '../../../models/product_agrument.dart';
+import '../../../models/agruments/product_agrument.dart';
 import 'item.dart';
 
 class ListItems extends StatelessWidget {
@@ -17,8 +15,9 @@ class ListItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var db = FirebaseFirestore.instance;
-    var products =
-        db.collection('products').where('type', isEqualTo: categories(type));
+    var products = db
+        .collection('products')
+        .where('type', isEqualTo: productCategories(type));
 
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: products.snapshots(),

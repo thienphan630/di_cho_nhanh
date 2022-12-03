@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import '../../../constraints/styles.dart';
@@ -10,7 +12,8 @@ class ItemInCart extends StatelessWidget {
     required this.quantity,
     required this.imageURL,
     required this.onMinusTap,
-    required this.onPlusTap, required this.onDeleteTap,
+    required this.onPlusTap,
+    required this.onDeleteTap,
   });
   final String name;
   final String imageURL;
@@ -29,17 +32,22 @@ class ItemInCart extends StatelessWidget {
       child: Row(
         children: [
           Container(
-              width: size.width / 3.5,
-              height: 160,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                  color: Color(0xFF84CBFF),
-                  borderRadius: BorderRadius.all(Radius.circular(16))),
-              child: CircleAvatar(
-                maxRadius: 42,
-                backgroundImage: NetworkImage(
-                    'https://drive.google.com/uc?export=view&id=$imageURL'),
-              )),
+            width: size.width / 3.5,
+            height: 160,
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+                color: Color(0xFF84CBFF),
+                borderRadius: BorderRadius.all(Radius.circular(16))),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(50)),
+              child: Image.memory(
+                base64Decode(imageURL),
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
           Container(
             width: size.width * 3 / 5,
             height: 100,

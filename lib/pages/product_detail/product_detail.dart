@@ -12,7 +12,7 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     DocumentReference<Map<String, dynamic>> products =
         FirebaseFirestore.instance.collection('products').doc(id);
-
+    bool isInCart = false;
     return Scaffold(
       appBar: titleAppBar('Chi tiết sản phẩm'),
       body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
@@ -33,22 +33,34 @@ class ProductDetail extends StatelessWidget {
                     .collection('users')
                     .doc('9AxMMbQDQetVKbp9kuWA')
                     .collection('cart');
-                cart
-                    .add(
-                      AddToCart(
-                        id: id,
-                        name: data['name'],
-                        image: data['image'],
-                        price: data['price'],
-                        quantity: 1.0,
-                      ).toMap(),
-                    )
-                    .whenComplete(() => ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(
-                            content: Text('Đã thêm vào giỏ hàng'))))
-                    .catchError((e) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text('Không thể thêm hàng vào giỏ')));
+                cart.get().then((value) {
+                  for (var element in value.docs) {
+                    if (id == element.get('id')) {
+                      isInCart = true;
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Món hàng đã có trong giỏ')));
+                      break;
+                    }
+                  }
+                  if (!isInCart) {
+                    cart
+                        .add(
+                          AddToCart(
+                            id: id,
+                            name: data['name'],
+                            image: data['image'],
+                            price: data['price'],
+                            quantity: 1.0,
+                          ).toMap(),
+                        )
+                        .whenComplete(() => ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                                content: Text('Đã thêm vào giỏ hàng'))))
+                        .catchError((e) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Không thể thêm hàng vào giỏ')));
+                    });
+                  }
                 });
               },
               buyNowTap: () {},

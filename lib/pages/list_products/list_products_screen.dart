@@ -1,4 +1,4 @@
-import 'package:di_cho_nhanh/models/categories.dart';
+import 'package:di_cho_nhanh/models/agruments/product_type.dart';
 import 'package:flutter/material.dart';
 
 import '../../constraints/styles.dart';
