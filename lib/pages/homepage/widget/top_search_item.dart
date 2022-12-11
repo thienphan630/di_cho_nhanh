@@ -1,6 +1,7 @@
-import 'package:di_cho_nhanh/providers/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../providers/favorite_provider.dart';
 
 class TopSearchItem extends StatefulWidget {
   const TopSearchItem({
@@ -25,8 +26,6 @@ class _TopSearchItemState extends State<TopSearchItem> {
 
   @override
   Widget build(BuildContext context) {
-    // bool isFavorite =
-    //     Provider.of<FavoriteProvider>(context, listen: false).isFavorite;
     return GestureDetector(
       onTap: widget.onTap,
       child: Stack(

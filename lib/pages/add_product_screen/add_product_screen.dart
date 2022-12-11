@@ -7,6 +7,7 @@ import 'package:di_cho_nhanh/pages/add_product_screen/widgets/pick_image.dart';
 import 'package:di_cho_nhanh/pages/add_product_screen/widgets/select_product_type.dart';
 import 'package:di_cho_nhanh/pages/homepage/widget/home_widgets.dart';
 import 'package:di_cho_nhanh/widgets/title_appbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AddProductScreen extends StatefulWidget {
@@ -194,8 +195,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   child: ElevatedButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          log(imageBase64 ?? defaultImage);
-                          log('${name.text} ${price.text} ${description.text} ${quantity.text}');
+                          // log(imageBase64 ?? defaultImage);
+                          // log('${name.text} ${price.text} ${description.text} ${quantity.text}');
+                          String sellerId = '';
+                          if (FirebaseAuth.instance.currentUser != null) {
+                            sellerId = FirebaseAuth.instance.currentUser!.uid;
+                          }
                           var product =
                               FirebaseFirestore.instance.collection('products');
                           product.add(ProductModal(
@@ -205,7 +210,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                   quantity: num.parse(quantity.text),
                                   sold: 0,
                                   stars: 5,
-                                  type: productCategories(type))
+                                  type: productCategories(type),
+                                  seller: sellerId)
                               .toMap());
                         } else {
                           log('error');

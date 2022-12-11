@@ -7,11 +7,20 @@ class RoutePath {
   /// List all Netatmo homes
   static const String splashScreen = '/splash';
 
-  ///Login
-  static const String login = '/login';
+  ///Choose login/signin
+  static const String auth = '/auth';
 
-  ///signup
-  static const String signup = '/signup';
+  ///Login
+  static const String login = 'auth/login';
+
+  ///login with phone number
+  static const String loginWithPhone = 'auth/login/phone_number';
+
+  ///add user information
+  static const String addUserInfor = 'add_user_infor';
+
+  ///add seller information
+  static const String addSellerInfor = 'add_seller_infor';
 
   ///product
   static const String product = '/product';
