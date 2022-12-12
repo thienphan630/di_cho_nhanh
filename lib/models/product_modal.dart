@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class ProductModal {
@@ -8,6 +9,7 @@ class ProductModal {
   final num sold;
   final num stars;
   final String type;
+  final String seller;
   ProductModal({
     required this.name,
     required this.image,
@@ -16,6 +18,7 @@ class ProductModal {
     required this.sold,
     required this.stars,
     required this.type,
+    required this.seller,
   });
 
   ProductModal copyWith({
@@ -26,6 +29,7 @@ class ProductModal {
     num? sold,
     num? stars,
     String? type,
+    String? seller,
   }) {
     return ProductModal(
       name: name ?? this.name,
@@ -35,6 +39,7 @@ class ProductModal {
       sold: sold ?? this.sold,
       stars: stars ?? this.stars,
       type: type ?? this.type,
+      seller: seller ?? this.seller,
     );
   }
 
@@ -47,6 +52,7 @@ class ProductModal {
       'sold': sold,
       'stars': stars,
       'type': type,
+      'seller': seller,
     };
   }
 
@@ -59,6 +65,7 @@ class ProductModal {
       sold: map['sold'] as num,
       stars: map['stars'] as num,
       type: map['type'] as String,
+      seller: map['seller'] as String,
     );
   }
 
@@ -68,7 +75,7 @@ class ProductModal {
 
   @override
   String toString() {
-    return 'ProductModal(name: $name, image: $image, price: $price, quantity: $quantity, sold: $sold, stars: $stars, type: $type)';
+    return 'ProductModal(name: $name, image: $image, price: $price, quantity: $quantity, sold: $sold, stars: $stars, type: $type, seller: $seller)';
   }
 
   @override
@@ -82,7 +89,8 @@ class ProductModal {
       other.quantity == quantity &&
       other.sold == sold &&
       other.stars == stars &&
-      other.type == type;
+      other.type == type &&
+      other.seller == seller;
   }
 
   @override
@@ -93,6 +101,7 @@ class ProductModal {
       quantity.hashCode ^
       sold.hashCode ^
       stars.hashCode ^
-      type.hashCode;
+      type.hashCode ^
+      seller.hashCode;
   }
 }

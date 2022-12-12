@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:di_cho_nhanh/models/agruments/auth_agrument.dart';
 import 'package:flutter/material.dart';
 
+import '../../config/route_path.dart';
 import '../../constraints/constraints.dart';
-import 'widgets/auth_form.dart';
+import 'widgets/widgets_auth.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
+  const LoginScreen({Key? key, required this.authType}) : super(key: key);
+  final AuthType authType;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -17,12 +20,41 @@ class LoginScreen extends StatelessWidget {
           automaticallyImplyLeading: false,
           backgroundColor: kGrayBackgroundColor,
           elevation: 0,
-          title: const Text(
-            'Log In',
-            style: TextStyle(
+          title: Text(
+            authType == AuthType.login ? 'Đăng Nhập' : 'Đăng ký',
+            style: const TextStyle(
                 fontSize: 32, fontWeight: FontWeight.bold, color: kBlackColor),
           ),
         ),
-        body: const FormAuth(isSignUp: false));
+        body: Column(
+          children: [
+            CustomButton(
+              text: 'Người mua',
+              onTap: () {
+                Navigator.pushNamed(context, RoutePath.loginWithPhone,
+                    arguments: AuthAgrument(Role.buyer, authType));
+              },
+            ),
+            const SizedBox(height: kDefaultPadding),
+            CustomButton(
+              text: 'Người bán',
+              onTap: () {
+                Navigator.pushNamed(context, RoutePath.loginWithPhone,
+                    arguments: AuthAgrument(Role.seller, authType));
+              },
+            ),
+          ],
+        ));
   }
+}
+
+// if (FirebaseAuth.instance.currentUser != null) {
+//   log(FirebaseAuth.instance.currentUser!.uid);
+//   addUserToFireStore(FirebaseAuth.instance.currentUser!.uid);
+// }
+Future<void> addUserToFireStore(String uid) async {
+  CollectionReference<Map<String, dynamic>> users =
+      FirebaseFirestore.instance.collection('users');
+  users.doc(uid).set({});
+  users.doc(uid).collection('cart');
 }

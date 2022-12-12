@@ -20,21 +20,8 @@ class Homepage extends StatelessWidget {
                 backgroundImage: AssetImage("assets/images/cat.jpg"),
               ),
             ],
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text('Tường',
-                    style: TextStyle(
-                        color: kBlackColor,
-                        height: 0.7,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700)),
-                Text('Xin chào!',
-                    style: TextStyle(
-                        color: kBlackColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400))
-              ],
+            title: const TitleUserInfor(
+              name: 'Tường',
             )),
         body: SingleChildScrollView(
           child: Padding(
@@ -66,6 +53,31 @@ class Homepage extends StatelessWidget {
         ),
         backgroundColor: kBackgroundColor,
       ),
+    );
+  }
+}
+
+class TitleUserInfor extends StatelessWidget {
+  const TitleUserInfor({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
+  final String name;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(name,
+            style: const TextStyle(
+                color: kBlackColor,
+                height: 0.7,
+                fontSize: 20,
+                fontWeight: FontWeight.w700)),
+        const Text('Xin chào!',
+            style: TextStyle(
+                color: kBlackColor, fontSize: 14, fontWeight: FontWeight.w400))
+      ],
     );
   }
 }
