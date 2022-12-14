@@ -4,8 +4,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:di_cho_nhanh/models/user_model.dart';
-import 'package:di_cho_nhanh/providers/auth_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +11,9 @@ import 'package:provider/provider.dart';
 import '../../../config/route_path.dart';
 import '../../../constraints/constraints.dart';
 import '../../../models/agruments/auth_agrument.dart';
+import '../../../models/user_model.dart';
+import '../../../providers/auth_provider.dart';
+import '../../../utilities/get_user_id.dart';
 import 'input.dart';
 
 class FormAuth extends StatefulWidget {
@@ -173,7 +174,7 @@ class _FormAuthState extends State<FormAuth> {
 
                   AuthType authType = widget.authentication.authType;
                   Role role = widget.authentication.role;
-                  String userId = FirebaseAuth.instance.currentUser!.uid;
+                  String userId = getUserId();
                   String collection = role == Role.buyer ? 'users' : 'sellers';
 
                   Provider.of<AuthProvider>(context, listen: false)

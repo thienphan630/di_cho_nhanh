@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:di_cho_nhanh/config/route_path.dart';
 import 'package:flutter/material.dart';
 
 import '../../constraints/styles.dart';
@@ -22,11 +23,10 @@ class ShoppingCart extends StatelessWidget {
           stream: cart.snapshots(),
           builder: (context, snapshot) {
             num total = 0;
-
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else {
-              for (var element in snapshot.data!.docs) {
+              for (QueryDocumentSnapshot<Map<String, dynamic>> element in snapshot.data!.docs) {
                 total += (element.get('price') * element.get('quantity'));
               }
               return snapshot.hasData
@@ -65,7 +65,12 @@ class ShoppingCart extends StatelessWidget {
                           padding: const EdgeInsets.all(kDefaultPadding),
                           child: TotalPayment(total: total),
                         ),
-                        const PaymentButton()
+                        PaymentButton(
+                          onPaymentTap: () {
+                            Navigator.pushNamed(context, RoutePath.momoPayment,
+                                arguments: total);
+                          },
+                        )
                       ],
                     )
                   : const Center(child: Text('Không có hàng trong giỏ'));

@@ -1,8 +1,8 @@
+import 'package:di_cho_nhanh/config/route_path.dart';
 import 'package:flutter/material.dart';
 
 import '../../constraints/constraints.dart';
 import 'widget/home_widgets.dart';
-import 'widget/search_container.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -29,7 +29,15 @@ class Homepage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SearchContainer(),
+                ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.pushNamed(context, RoutePath.searchScreen);
+                    },
+                    icon: const Icon(Icons.manage_search_rounded),
+                    label: const Text('Tìm kiếm'),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.green),
+                    )),
                 const SizedBox(
                   height: kDefaultPadding,
                 ),

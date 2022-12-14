@@ -4,8 +4,11 @@ class RoutePath {
   /// Renders [HomePage]
   static const String home = '/';
 
-  /// List all Netatmo homes
+  ///splash screen
   static const String splashScreen = '/splash';
+
+  ///search screen
+  static const String searchScreen = '/search';
 
   ///Choose login/signin
   static const String auth = '/auth';
@@ -28,6 +31,10 @@ class RoutePath {
   ///list product
   static const String listProduct = '/list_product';
 
+  ///payment with momo
+  static const String momoPayment = '/momoPayment';
+
   ///add product
   static const String addProduct = '/add_product';
+
 }

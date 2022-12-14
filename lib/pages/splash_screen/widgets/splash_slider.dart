@@ -19,7 +19,7 @@ class _SplashSliderState extends State<SplashSlider> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
     return Column(
       children: [

@@ -9,7 +9,7 @@ class BannerCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 2 * kDefaultPadding),

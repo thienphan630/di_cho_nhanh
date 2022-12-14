@@ -5,12 +5,13 @@ import '../../../constraints/styles.dart';
 class PaymentButton extends StatelessWidget {
   const PaymentButton({
     Key? key,
+    required this.onPaymentTap,
   }) : super(key: key);
-
+  final VoidCallback onPaymentTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: onPaymentTap,
       child: Container(
         margin: const EdgeInsets.only(
             left: 2 * kDefaultPadding,
@@ -25,9 +26,7 @@ class PaymentButton extends StatelessWidget {
         child: const Text(
           'Thủ tục thanh toán',
           style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w500),
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500),
         ),
       ),
     );

@@ -14,8 +14,7 @@ class ListItems extends StatelessWidget {
   final ProductType type;
   @override
   Widget build(BuildContext context) {
-    var db = FirebaseFirestore.instance;
-    var products = db
+    Query<Map<String, dynamic>> products = FirebaseFirestore.instance
         .collection('products')
         .where('type', isEqualTo: productCategories(type));
 
@@ -34,7 +33,7 @@ class ListItems extends StatelessWidget {
                             crossAxisCount: 2,
                             childAspectRatio: 2 / 3),
                     itemBuilder: (context, index) {
-                      var data = snapshot.data!.docs[index];
+                      QueryDocumentSnapshot<Map<String, dynamic>> data = snapshot.data!.docs[index];
                       return Item(
                         name: data.get('name'),
                         imageURL: data.get('image'),
