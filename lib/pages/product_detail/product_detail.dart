@@ -15,58 +15,62 @@ class ProductDetail extends StatelessWidget {
     bool isInCart = false;
     return Scaffold(
       appBar: titleAppBar('Chi tiết sản phẩm'),
-      body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-        stream: products.snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            Map<String, dynamic>? data = snapshot.data!.data();
-            return ProductDetailContent(
-              name: data!['name'],
-              price: data['price'],
-              sold: data['sold'],
-              imageURL: data['image'],
-              stars: data['stars'],
-              addToCartTap: () {
-                CollectionReference cart = FirebaseFirestore.instance
-                    .collection('users')
-                    .doc('9AxMMbQDQetVKbp9kuWA')
-                    .collection('cart');
-                cart.get().then((value) {
-                  for (var element in value.docs) {
-                    if (id == element.get('id')) {
-                      isInCart = true;
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text('Món hàng đã có trong giỏ')));
-                      break;
+      body: SingleChildScrollView(
+        child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+          stream: products.snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              Map<String, dynamic>? data = snapshot.data!.data();
+              return ProductDetailContent(
+                name: data!['name'],
+                price: data['price'],
+                sold: data['sold'],
+                imageURL: data['image'],
+                stars: data['stars'],
+                addToCartTap: () {
+                  CollectionReference cart = FirebaseFirestore.instance
+                      .collection('users')
+                      .doc('9AxMMbQDQetVKbp9kuWA')
+                      .collection('cart');
+                  cart.get().then((value) {
+                    for (QueryDocumentSnapshot<Object?> element in value.docs) {
+                      if (id == element.get('id')) {
+                        isInCart = true;
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Món hàng đã có trong giỏ')));
+                        break;
+                      }
                     }
-                  }
-                  if (!isInCart) {
-                    cart
-                        .add(
-                          AddToCart(
-                            id: id,
-                            name: data['name'],
-                            image: data['image'],
-                            price: data['price'],
-                            quantity: 1.0,
-                          ).toMap(),
-                        )
-                        .whenComplete(() => ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                                content: Text('Đã thêm vào giỏ hàng'))))
-                        .catchError((e) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text('Không thể thêm hàng vào giỏ')));
-                    });
-                  }
-                });
-              },
-              buyNowTap: () {},
-            );
-          }
-        },
+                    if (!isInCart) {
+                      cart
+                          .add(
+                            AddToCart(
+                              id: id,
+                              name: data['name'],
+                              image: data['image'],
+                              price: data['price'],
+                              quantity: 1.0,
+                            ).toMap(),
+                          )
+                          .whenComplete(() => ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                                  content: Text('Đã thêm vào giỏ hàng'))))
+                          .catchError((e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Không thể thêm hàng vào giỏ')));
+                      });
+                    }
+                  });
+                },
+                buyNowTap: () {},
+              );
+            }
+          },
+        ),
       ),
     );
   }

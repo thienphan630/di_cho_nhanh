@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../constraints/styles.dart';
+import '../../utilities/get_user_id.dart';
 import '../../widgets/app_widget.dart';
 import 'products.dart';
 
@@ -12,10 +12,7 @@ class ManageProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String userId = '';
-    if (FirebaseAuth.instance.currentUser != null) {
-      userId = FirebaseAuth.instance.currentUser!.uid;
-    }
+    String userId = getUserId();
     Query<Map<String, dynamic>> product = FirebaseFirestore.instance
         .collection('products')
         .where('seller', isEqualTo: userId);
@@ -40,7 +37,7 @@ class ManageProductsScreen extends StatelessWidget {
                               crossAxisCount: 2,
                               childAspectRatio: 2 / 3),
                       itemBuilder: (context, index) {
-                        var data = snapshot.data!.docs[index];
+                        QueryDocumentSnapshot<Map<String, dynamic>> data = snapshot.data!.docs[index];
                         return Product(
                           name: data.get('name'),
                           image: data.get('image'),

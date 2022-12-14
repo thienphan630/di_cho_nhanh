@@ -12,15 +12,14 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var db = FirebaseFirestore.instance;
-    var query = db
+    CollectionReference<Map<String, dynamic>> favorite = FirebaseFirestore
+        .instance
         .collection('users')
         .doc('9AxMMbQDQetVKbp9kuWA')
-        .collection('favorite')
-        .snapshots();
+        .collection('favorite');
 
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream: query,
+        stream: favorite.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -35,11 +34,11 @@ class ListItem extends StatelessWidget {
                             crossAxisCount: 2,
                             childAspectRatio: 2 / 3),
                     itemBuilder: (context, index) {
-                      var query1 = snapshot.data!.docs[index];
+                      QueryDocumentSnapshot<Map<String, dynamic>> data = snapshot.data!.docs[index];
                       return favoriteItem(
-                        query1.get('name'),
-                        query1.get('image'),
-                        query1.get('price'),
+                        data.get('name'),
+                        data.get('image'),
+                        data.get('price'),
                       );
                     },
                   )

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../config/route_path.dart';
 import '../../models/seller_model.dart';
+import '../../utilities/get_user_id.dart';
 import '../../widgets/app_widget.dart';
 import 'widgets/widgets_auth.dart';
 
@@ -87,7 +88,7 @@ class _AddSellerInformationState extends State<AddSellerInformation> {
   void _submitButton(GlobalKey<FormState> formKey) {
     if (formKey.currentState!.validate()) {
       if (FirebaseAuth.instance.currentUser != null) {
-        String id = FirebaseAuth.instance.currentUser!.uid;
+        String id = getUserId();
         log(id);
         DocumentReference<Map<String, dynamic>> user =
             FirebaseFirestore.instance.collection('sellers').doc(id);

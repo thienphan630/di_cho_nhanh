@@ -1,14 +1,15 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:di_cho_nhanh/models/agruments/product_type.dart';
-import 'package:di_cho_nhanh/models/product_modal.dart';
-import 'package:di_cho_nhanh/pages/add_product_screen/widgets/pick_image.dart';
-import 'package:di_cho_nhanh/pages/add_product_screen/widgets/select_product_type.dart';
-import 'package:di_cho_nhanh/pages/homepage/widget/home_widgets.dart';
-import 'package:di_cho_nhanh/widgets/title_appbar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../../models/agruments/product_type.dart';
+import '../../models/product_modal.dart';
+import '../../utilities/get_user_id.dart';
+import '../../widgets/app_widget.dart';
+import '../../widgets/data.dart';
+import 'widgets/pick_image.dart';
+import 'widgets/select_product_type.dart';
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({super.key});
@@ -197,11 +198,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         if (formKey.currentState!.validate()) {
                           // log(imageBase64 ?? defaultImage);
                           // log('${name.text} ${price.text} ${description.text} ${quantity.text}');
-                          String sellerId = '';
-                          if (FirebaseAuth.instance.currentUser != null) {
-                            sellerId = FirebaseAuth.instance.currentUser!.uid;
-                          }
-                          var product =
+                          String sellerId = getUserId();
+                          CollectionReference<Map<String, dynamic>> product =
                               FirebaseFirestore.instance.collection('products');
                           product.add(ProductModal(
                                   name: name.text,

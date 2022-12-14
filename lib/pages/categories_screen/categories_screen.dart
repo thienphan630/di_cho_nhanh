@@ -43,8 +43,9 @@ class CategoriesScreen extends StatelessWidget {
                         ? ListView.builder(
                             itemCount: snapshot.data!.docs.length,
                             itemBuilder: (context, index) {
-                              var data = snapshot.data!.docs[index];
-                              var type = data.get('type');
+                              QueryDocumentSnapshot<Map<String, dynamic>> data =
+                                  snapshot.data!.docs[index];
+                              String type = data.get('type');
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [

@@ -11,6 +11,7 @@ import '../pages/categories_screen/categories_screen.dart';
 import '../pages/favorite/favorite_items.dart';
 import '../pages/homepage/homepage.dart';
 import '../pages/cart_screen/cart_screen.dart';
+import '../pages/manage_orders/manage_orders.dart';
 import '../pages/manage_products/manage_products_screen.dart';
 import '../pages/personal_screen/personal_screen.dart';
 import '../providers/auth_provider.dart';
@@ -34,40 +35,60 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   Widget build(BuildContext context) {
     Role role = context.watch<AuthProvider>().getRole;
     return BottomNavigationBar(
-      backgroundColor: kPrimaryColor,
-      fixedColor: kPrimaryColor,
-      unselectedItemColor: kGrayColor,
-      currentIndex: context.watch<BottomIndex>().bottomIndex,
-      onTap: _onTap,
-      items: [
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.home_filled),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: role == Role.seller
-              ? const Icon(Icons.inventory)
-              : const Icon(Icons.shopping_cart_outlined),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: role == Role.seller
-              ? const Icon(Icons.add_circle_outline_rounded)
-              : const Icon(Icons.favorite_border),
-          label: '',
-        ),
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.inventory),
-          label: '',
-        ),
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.person_outline),
-          label: '',
-        ),
-      ],
-    );
+        backgroundColor: kPrimaryColor,
+        fixedColor: kPrimaryColor,
+        unselectedItemColor: kGrayColor,
+        currentIndex: context.watch<BottomIndex>().bottomIndex,
+        onTap: _onTap,
+        items: role == Role.seller ? seller : buyer);
   }
 }
+
+List<BottomNavigationBarItem> buyer = [
+  const BottomNavigationBarItem(
+    icon: Icon(Icons.home_filled),
+    label: '',
+  ),
+  const BottomNavigationBarItem(
+    icon: Icon(Icons.shopping_cart_outlined),
+    label: '',
+  ),
+  const BottomNavigationBarItem(
+    icon: Icon(Icons.favorite_border),
+    label: '',
+  ),
+  const BottomNavigationBarItem(
+    icon: Icon(Icons.inventory),
+    label: '',
+  ),
+  const BottomNavigationBarItem(
+    icon: Icon(Icons.person_outline),
+    label: '',
+  ),
+];
+
+List<BottomNavigationBarItem> seller = [
+  const BottomNavigationBarItem(
+    icon: Icon(Icons.home_filled),
+    label: '',
+  ),
+  const BottomNavigationBarItem(
+    icon: Icon(Icons.inventory),
+    label: '',
+  ),
+  const BottomNavigationBarItem(
+    icon: Icon(Icons.add_circle_outline_rounded),
+    label: '',
+  ),
+  const BottomNavigationBarItem(
+    icon: Icon(Icons.receipt),
+    label: '',
+  ),
+  const BottomNavigationBarItem(
+    icon: Icon(Icons.person_outline),
+    label: '',
+  ),
+];
 
 Widget nav(int index, Role role) {
   if (role == Role.seller) {
@@ -79,7 +100,7 @@ Widget nav(int index, Role role) {
       case 2:
         return const AddProductScreen();
       case 3:
-        return const ShoppingCart();
+        return const ManageOrderScreen();
       case 4:
         {
           if (FirebaseAuth.instance.currentUser != null) {

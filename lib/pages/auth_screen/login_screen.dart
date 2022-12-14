@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:di_cho_nhanh/models/agruments/auth_agrument.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/route_path.dart';
 import '../../constraints/constraints.dart';
+import '../../models/agruments/auth_agrument.dart';
 import 'widgets/widgets_auth.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
   final AuthType authType;
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: kGrayBackgroundColor,
@@ -48,10 +48,6 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-// if (FirebaseAuth.instance.currentUser != null) {
-//   log(FirebaseAuth.instance.currentUser!.uid);
-//   addUserToFireStore(FirebaseAuth.instance.currentUser!.uid);
-// }
 Future<void> addUserToFireStore(String uid) async {
   CollectionReference<Map<String, dynamic>> users =
       FirebaseFirestore.instance.collection('users');

@@ -25,7 +25,7 @@ Widget listProducts(String type) {
                     scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
-                      var data = snapshot.data!.docs[index];
+                      QueryDocumentSnapshot<Map<String, dynamic>> data = snapshot.data!.docs[index];
                       return Item(
                         name: data.get('name') ?? '',
                         price: data.get('price') ?? '',
