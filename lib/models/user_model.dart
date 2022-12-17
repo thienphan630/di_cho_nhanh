@@ -5,11 +5,13 @@ class UserModel {
   final String lastName;
   final String email;
   final String address;
+  final String phoneNumber;
   UserModel({
     required this.firstName,
     required this.lastName,
     required this.email,
     required this.address,
+    required this.phoneNumber,
   });
 
   UserModel copyWith({
@@ -17,12 +19,14 @@ class UserModel {
     String? lastName,
     String? email,
     String? address,
+    String? phoneNumber,
   }) {
     return UserModel(
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
       address: address ?? this.address,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
     );
   }
 
@@ -32,6 +36,7 @@ class UserModel {
       'lastName': lastName,
       'email': email,
       'address': address,
+      'phoneNumber': phoneNumber,
     };
   }
 
@@ -41,35 +46,38 @@ class UserModel {
       lastName: map['lastName'] as String,
       email: map['email'] as String,
       address: map['address'] as String,
+      phoneNumber: map['phoneNumber'] as String,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, address: $address)';
+    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, address: $address, phoneNumber: $phoneNumber)';
   }
 
   @override
   bool operator ==(covariant UserModel other) {
     if (identical(this, other)) return true;
-
-    return other.firstName == firstName &&
-        other.lastName == lastName &&
-        other.email == email &&
-        other.address == address;
+  
+    return 
+      other.firstName == firstName &&
+      other.lastName == lastName &&
+      other.email == email &&
+      other.address == address &&
+      other.phoneNumber == phoneNumber;
   }
 
   @override
   int get hashCode {
     return firstName.hashCode ^
-        lastName.hashCode ^
-        email.hashCode ^
-        address.hashCode;
+      lastName.hashCode ^
+      email.hashCode ^
+      address.hashCode ^
+      phoneNumber.hashCode;
   }
 }
 
@@ -107,7 +115,8 @@ class UserLocalModal {
 
   String toJson() => json.encode(toMap());
 
-  factory UserLocalModal.fromJson(String source) => UserLocalModal.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserLocalModal.fromJson(String source) =>
+      UserLocalModal.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'UserLocalModal(role: $role, id: $id)';

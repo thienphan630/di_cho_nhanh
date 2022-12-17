@@ -43,6 +43,7 @@ dependencies:
   pinput: ^2.2.16
   image_picker: ^0.8.6
   shared_preferences: ^2.0.15
+  fl_chart: ^0.55.2
 
 dev_dependencies:
   flutter_test:

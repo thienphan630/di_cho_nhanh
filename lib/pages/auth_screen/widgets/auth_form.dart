@@ -82,10 +82,14 @@ class _FormAuthState extends State<FormAuth> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                     onPressed: () {
-                      _verifyPhone();
-                      setState(() {
-                        isShowed = true;
-                      });
+                      if (widget.authentication.authType == AuthType.login) {
+                        _checkPhoneNumberExist(phoneController.text);
+                      } else {
+                        _verifyPhone();
+                        setState(() {
+                          isShowed = true;
+                        });
+                      }
                     },
                     child: const Text('Lấy mã xác nhận')),
               ),
@@ -100,6 +104,28 @@ class _FormAuthState extends State<FormAuth> {
     );
   }
 
+  void _checkPhoneNumberExist(String phoneNumber) {
+    String collection =
+        widget.authentication.role == Role.buyer ? 'users' : 'sellers';
+
+    FirebaseFirestore.instance
+        .collection(collection)
+        .where('phoneNumber', isEqualTo: phoneNumber)
+        .get()
+        .then((value) {
+      if (value.docs.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+                'Số điện thoại này chưa được đăng ký!\nVui lòng quay lại trang trước để đăng ký!')));
+      } else {
+        _verifyPhone();
+        setState(() {
+          isShowed = true;
+        });
+      }
+    });
+  }
+
   _verifyPhone() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     await auth.verifyPhoneNumber(
@@ -107,7 +133,10 @@ class _FormAuthState extends State<FormAuth> {
       verificationCompleted: (PhoneAuthCredential credential) {
         log('$credential');
       },
-      verificationFailed: (FirebaseAuthException e) {},
+      verificationFailed: (FirebaseAuthException e) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Số điện thoại không hợp lệ!\nVui lòng nhập lại!')));
+      },
       timeout: const Duration(seconds: 60),
       codeSent: (String verificationId, int? resendToken) {
         setState(() {
@@ -197,9 +226,11 @@ class _FormAuthState extends State<FormAuth> {
                               context, RoutePath.home)
                       : role == Role.buyer
                           ? Navigator.pushReplacementNamed(
-                              context, RoutePath.addUserInfor)
+                              context, RoutePath.addUserInfor,
+                              arguments: phoneController.text)
                           : Navigator.pushReplacementNamed(
-                              context, RoutePath.addSellerInfor);
+                              context, RoutePath.addSellerInfor,
+                              arguments: phoneController.text);
                 } catch (e) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(content: Text(e.toString())));

@@ -8,6 +8,7 @@ import '../pages/auth_screen/add_infor_seller.dart';
 import '../pages/auth_screen/add_infor_users.dart';
 import '../pages/auth_screen/auth_screen.dart';
 import '../pages/auth_screen/login_with_phone_screen.dart';
+import '../pages/edit_infor_screen/edit_infor_screen.dart';
 import '../pages/homepage/widget/search_screen.dart';
 import '../pages/list_products/list_products_screen.dart';
 import '../pages/main_layout.dart';
@@ -35,14 +36,20 @@ Route<dynamic> generateRoute(RouteSettings settings) {
                   auth: agrs,
                 ));
       }
+    //shared
+    case RoutePath.editInf:
+      return MaterialPageRoute(builder: (context) => const EditInforScreen());
     // users
     case RoutePath.home:
       return MaterialPageRoute(builder: (context) => const MainLayout());
     case RoutePath.auth:
       return MaterialPageRoute(builder: (context) => const AuthScreen());
     case RoutePath.addUserInfor:
-      return MaterialPageRoute(
-          builder: (context) => const AddUsersInformation());
+      {
+        final agrs = settings.arguments as String;
+        return MaterialPageRoute(
+            builder: (context) => AddUsersInformation(phoneNumber: agrs));
+      }
     case RoutePath.splashScreen:
       return MaterialPageRoute(builder: (context) => const SplashScreen());
     case RoutePath.listProduct:
@@ -71,9 +78,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case RoutePath.addProduct:
       return MaterialPageRoute(builder: (context) => const AddProductScreen());
     case RoutePath.addSellerInfor:
-      return MaterialPageRoute(
-          builder: (context) => const AddSellerInformation());
-
+      {
+        final agrs = settings.arguments as String;
+        return MaterialPageRoute(
+            builder: (context) => AddSellerInformation(phoneNumber: agrs));
+      }
     //default
     default:
       return MaterialPageRoute(builder: (context) => const NotFoundPage());

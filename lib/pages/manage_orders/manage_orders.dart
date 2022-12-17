@@ -32,9 +32,12 @@ class _ManageOrderScreenState extends State<ManageOrderScreen> {
               itemBuilder: (context, index) {
                 QueryDocumentSnapshot<Map<String, dynamic>> data =
                     snapshot.data!.docs[index];
-                DocumentReference<Map<String, dynamic>> product = FirebaseFirestore.instance
-                    .collection('products')
-                    .doc(data.get('productId'));
+
+                DocumentReference<Map<String, dynamic>> product =
+                    FirebaseFirestore.instance
+                        .collection('products')
+                        // .doc('btvxMjdfzPGOWaf8WHeP');
+                        .doc(data.get('productId'));
                 String selectedStatus = data.get('status');
                 return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                   stream: product.snapshots(),
@@ -88,14 +91,10 @@ class _ManageOrderScreenState extends State<ManageOrderScreen> {
                           ),
                         );
                       } else {
-                        return const Center(
-                          child: Text('Bạn không có đơn hàng nào'),
-                        );
+                        return const SizedBox();
                       }
                     } else {
-                      return const Center(
-                        child: Text('Bạn không có đơn hàng nào'),
-                      );
+                      return const SizedBox();
                     }
                   },
                 );
