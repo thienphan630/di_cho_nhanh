@@ -37,7 +37,8 @@ class ManageProductsScreen extends StatelessWidget {
                               crossAxisCount: 2,
                               childAspectRatio: 2 / 3),
                       itemBuilder: (context, index) {
-                        QueryDocumentSnapshot<Map<String, dynamic>> data = snapshot.data!.docs[index];
+                        QueryDocumentSnapshot<Map<String, dynamic>> data =
+                            snapshot.data!.docs[index];
                         return Product(
                           name: data.get('name'),
                           image: data.get('image'),
@@ -76,6 +77,10 @@ deleteTap(
                 storage.doc(data.id).delete().then(
                       (value) => Navigator.of(context).pop(),
                     );
+                FirebaseFirestore.instance
+                    .collection('order_history')
+                    .doc(data.id)
+                    .delete();
               },
               child: const Text('Có')),
           TextButton(

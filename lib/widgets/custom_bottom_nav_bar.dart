@@ -8,6 +8,7 @@ import '../models/agruments/auth_agrument.dart';
 import '../pages/add_product_screen/add_product_screen.dart';
 import '../pages/auth_screen/auth_screen.dart';
 import '../pages/categories_screen/categories_screen.dart';
+import '../pages/chart_screen/chart_screen.dart';
 import '../pages/favorite/favorite_items.dart';
 import '../pages/homepage/homepage.dart';
 import '../pages/cart_screen/cart_screen.dart';
@@ -69,7 +70,7 @@ List<BottomNavigationBarItem> buyer = [
 
 List<BottomNavigationBarItem> seller = [
   const BottomNavigationBarItem(
-    icon: Icon(Icons.home_filled),
+    icon: Icon(Icons.poll_outlined),
     label: '',
   ),
   const BottomNavigationBarItem(
@@ -94,7 +95,7 @@ Widget nav(int index, Role role) {
   if (role == Role.seller) {
     switch (index) {
       case 0:
-        return const Homepage();
+        return const ChartScreen();
       case 1:
         return const ManageProductsScreen();
       case 2:

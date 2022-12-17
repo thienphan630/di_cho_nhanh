@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 const List<String> status = [
-  'Đơn hàng mới',
+  'Chờ xử lý',
   'Đang chuẩn bị',
   'Đang giao',
   'Hủy đơn hàng'

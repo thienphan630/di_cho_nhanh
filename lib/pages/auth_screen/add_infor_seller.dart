@@ -11,8 +11,8 @@ import '../../widgets/app_widget.dart';
 import 'widgets/widgets_auth.dart';
 
 class AddSellerInformation extends StatefulWidget {
-  const AddSellerInformation({super.key});
-
+  const AddSellerInformation({super.key, required this.phoneNumber});
+  final String phoneNumber;
   @override
   State<AddSellerInformation> createState() => _AddSellerInformationState();
 }
@@ -98,6 +98,7 @@ class _AddSellerInformationState extends State<AddSellerInformation> {
           email: email.text,
           address: address.text,
           storeName: storeName.text,
+          phoneNumber: widget.phoneNumber,
         ).toMap());
         Navigator.pushReplacementNamed(context, RoutePath.home);
       }

@@ -11,8 +11,8 @@ import '../../widgets/app_widget.dart';
 import 'widgets/widgets_auth.dart';
 
 class AddUsersInformation extends StatefulWidget {
-  const AddUsersInformation({super.key});
-
+  const AddUsersInformation({super.key, required this.phoneNumber});
+  final String phoneNumber;
   @override
   State<AddUsersInformation> createState() => _AddUsersInformationState();
 }
@@ -87,11 +87,12 @@ class _AddUsersInformationState extends State<AddUsersInformation> {
             FirebaseFirestore.instance.collection('users').doc(id);
         user.set(
           UserModel(
-                  firstName: firstName.text,
-                  lastName: lastName.text,
-                  email: email.text,
-                  address: address.text)
-              .toMap(),
+            firstName: firstName.text,
+            lastName: lastName.text,
+            email: email.text,
+            address: address.text,
+            phoneNumber: widget.phoneNumber,
+          ).toMap(),
         );
         Navigator.pushReplacementNamed(context, RoutePath.home);
       }

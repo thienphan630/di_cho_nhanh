@@ -37,4 +37,6 @@ class RoutePath {
   ///add product
   static const String addProduct = '/add_product';
 
+  ///edit informain screen
+  static const String editInf = '/edit_inf';
 }
