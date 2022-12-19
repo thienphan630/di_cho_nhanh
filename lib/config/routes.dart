@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../models/agruments/auth_agrument.dart';
@@ -11,8 +12,8 @@ import '../pages/auth_screen/login_with_phone_screen.dart';
 import '../pages/edit_infor_screen/edit_infor_screen.dart';
 import '../pages/homepage/widget/search_screen.dart';
 import '../pages/list_products/list_products_screen.dart';
-import '../pages/main_layout.dart';
 import '../pages/auth_screen/login_screen.dart';
+import '../pages/main_layout.dart';
 import '../pages/not_found_page.dart';
 import '../pages/payment_momo/payment_momo.dart';
 import '../pages/product_detail/product_detail.dart';
@@ -20,6 +21,14 @@ import '../pages/splash_screen/splash.dart';
 import 'route_path.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
+  bool isLogin = false;
+  FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    if (user != null) {
+      isLogin = true;
+    } else {
+      isLogin = false;
+    }
+  });
   switch (settings.name) {
     //login
     case RoutePath.login:
@@ -41,7 +50,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const EditInforScreen());
     // users
     case RoutePath.home:
-      return MaterialPageRoute(builder: (context) => const MainLayout());
+      return MaterialPageRoute(
+          builder: (context) =>
+              isLogin ? const MainLayout() : const AuthScreen());
     case RoutePath.auth:
       return MaterialPageRoute(builder: (context) => const AuthScreen());
     case RoutePath.addUserInfor:

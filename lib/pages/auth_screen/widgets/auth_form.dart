@@ -110,7 +110,7 @@ class _FormAuthState extends State<FormAuth> {
 
     FirebaseFirestore.instance
         .collection(collection)
-        .where('phoneNumber', isEqualTo: phoneNumber)
+        .where('phoneNumber', isEqualTo: '+84$phoneNumber')
         .get()
         .then((value) {
       if (value.docs.isEmpty) {
@@ -124,6 +124,7 @@ class _FormAuthState extends State<FormAuth> {
         });
       }
     });
+    FocusManager.instance.primaryFocus?.unfocus();
   }
 
   _verifyPhone() async {
