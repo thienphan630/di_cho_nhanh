@@ -39,4 +39,7 @@ class RoutePath {
 
   ///edit informain screen
   static const String editInf = '/edit_inf';
+
+  ///orders history
+  static const String ordersHistory = '/order_history';
 }

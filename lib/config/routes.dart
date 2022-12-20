@@ -1,3 +1,4 @@
+import 'package:di_cho_nhanh/pages/orders_history_screen/orders_history_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -85,6 +86,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       }
     case RoutePath.searchScreen:
       return MaterialPageRoute(builder: (context) => const SearchScreen());
+    case RoutePath.ordersHistory:
+      return MaterialPageRoute(
+          builder: (context) => const OrdersHistoryScreen());
     //seller
     case RoutePath.addProduct:
       return MaterialPageRoute(builder: (context) => const AddProductScreen());
