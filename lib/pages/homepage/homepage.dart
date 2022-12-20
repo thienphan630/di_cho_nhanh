@@ -15,8 +15,6 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Role role = Provider.of<AuthProvider>(context, listen: false).getRole;
-    DocumentReference<Map<String, dynamic>> userInfor = getUserInfor(role);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -29,9 +27,7 @@ class Homepage extends StatelessWidget {
                 backgroundImage: AssetImage("assets/images/cat.jpg"),
               ),
             ],
-            title: const TitleUserInfor(
-              name: 'Tường',
-            )),
+            title: const TitleUserInfor()),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(top: kDefaultPadding),
@@ -77,25 +73,37 @@ class Homepage extends StatelessWidget {
 class TitleUserInfor extends StatelessWidget {
   const TitleUserInfor({
     Key? key,
-    required this.name,
   }) : super(key: key);
-  final String name;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(name,
-            style: const TextStyle(
-                color: kBlackColor,
-                height: 0.7,
-                fontSize: 20,
-                fontWeight: FontWeight.w700)),
-        const Text('Xin chào!',
-            style: TextStyle(
-                color: kBlackColor, fontSize: 14, fontWeight: FontWeight.w400))
-      ],
-    );
+    Role role = Provider.of<AuthProvider>(context, listen: false).getRole;
+    DocumentReference<Map<String, dynamic>> userInfor = getUserInfor(role);
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+        stream: userInfor.snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasData) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(snapshot.data!.get('firstName'),
+                    style: const TextStyle(
+                        color: kBlackColor,
+                        height: 0.7,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700)),
+                const Text('Xin chào!',
+                    style: TextStyle(
+                        color: kBlackColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400))
+              ],
+            );
+          } else {
+            return const Text('...');
+          }
+        });
   }
 }
 
