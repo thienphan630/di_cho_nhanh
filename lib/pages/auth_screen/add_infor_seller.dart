@@ -98,7 +98,7 @@ class _AddSellerInformationState extends State<AddSellerInformation> {
           email: email.text,
           address: address.text,
           storeName: storeName.text,
-          phoneNumber: widget.phoneNumber,
+          phoneNumber: '+84${widget.phoneNumber}',
         ).toMap());
         Navigator.pushReplacementNamed(context, RoutePath.home);
       }

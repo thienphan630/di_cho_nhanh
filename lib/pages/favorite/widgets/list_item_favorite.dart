@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:di_cho_nhanh/utilities/get_user_id.dart';
 import 'package:flutter/material.dart';
 
 import 'item_favorite.dart';
@@ -12,10 +13,11 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String id = getUserId();
     CollectionReference<Map<String, dynamic>> favorite = FirebaseFirestore
         .instance
         .collection('users')
-        .doc('9AxMMbQDQetVKbp9kuWA')
+        .doc(id)
         .collection('favorite');
 
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -23,8 +25,8 @@ class ListItem extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
-          } else {
-            log(snapshot.data!.docs.first.data().toString());
+          } else { 
+            // log(snapshot.data!.docs.first.data().toString());
             return snapshot.hasData
                 ? GridView.builder(
                     itemCount: snapshot.data!.docs.length,
@@ -34,7 +36,8 @@ class ListItem extends StatelessWidget {
                             crossAxisCount: 2,
                             childAspectRatio: 2 / 3),
                     itemBuilder: (context, index) {
-                      QueryDocumentSnapshot<Map<String, dynamic>> data = snapshot.data!.docs[index];
+                      QueryDocumentSnapshot<Map<String, dynamic>> data =
+                          snapshot.data!.docs[index];
                       return favoriteItem(
                         data.get('name'),
                         data.get('image'),
