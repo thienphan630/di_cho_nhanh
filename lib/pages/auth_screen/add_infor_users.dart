@@ -91,7 +91,7 @@ class _AddUsersInformationState extends State<AddUsersInformation> {
             lastName: lastName.text,
             email: email.text,
             address: address.text,
-            phoneNumber: widget.phoneNumber,
+            phoneNumber: '+84${widget.phoneNumber}',
           ).toMap(),
         );
         Navigator.pushReplacementNamed(context, RoutePath.home);

@@ -1,7 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:di_cho_nhanh/config/route_path.dart';
+import 'package:di_cho_nhanh/utilities/get_user_id.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../constraints/constraints.dart';
+import '../../models/agruments/auth_agrument.dart';
+import '../../providers/auth_provider.dart';
 import 'widget/home_widgets.dart';
 
 class Homepage extends StatelessWidget {
@@ -9,10 +15,13 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Role role = Provider.of<AuthProvider>(context, listen: false).getRole;
+    DocumentReference<Map<String, dynamic>> userInfor = getUserInfor(role);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
             elevation: 0,
+            automaticallyImplyLeading: false,
             backgroundColor: kBackgroundColor,
             actions: const [
               CircleAvatar(

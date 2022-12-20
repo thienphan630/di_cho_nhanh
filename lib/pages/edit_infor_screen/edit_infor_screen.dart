@@ -124,23 +124,42 @@ class EditInforScreen extends StatelessWidget {
                         address.text = address.text.isEmpty
                             ? data.get('address')
                             : address.text;
-                        storeName.text = storeName.text.isEmpty
-                            ? data.get('storeName')
-                            : storeName.text;
-                        FirebaseFirestore.instance
-                            .collection('sellers')
-                            .doc(getUserId())
-                            .update({
-                          'firstName': firstName.text,
-                          'lastName': lastName.text,
-                          'email': email.text,
-                          'address': address.text,
-                          'storeName': storeName.text,
-                        }).then((value) => {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                          content: Text('Cập nhật thành công')))
-                                });
+                        if (role == Role.seller) {
+                          storeName.text = storeName.text.isEmpty
+                              ? data.get('storeName')
+                              : storeName.text;
+                        }
+                        role == Role.seller
+                            ? FirebaseFirestore.instance
+                                .collection('sellers')
+                                .doc(getUserId())
+                                .update({
+                                'firstName': firstName.text,
+                                'lastName': lastName.text,
+                                'email': email.text,
+                                'address': address.text,
+                                'storeName': storeName.text,
+                              }).then((value) => {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              content:
+                                                  Text('Cập nhật thành công')))
+                                    })
+                            : FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(getUserId())
+                                .update({
+                                'firstName': firstName.text,
+                                'lastName': lastName.text,
+                                'email': email.text,
+                                'address': address.text,
+                              }).then((value) => {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              content:
+                                                  Text('Cập nhật thành công')))
+                                    });
+                        FocusManager.instance.primaryFocus?.unfocus();
                       },
                       child: const Text('Cập nhật'))
                 ],
