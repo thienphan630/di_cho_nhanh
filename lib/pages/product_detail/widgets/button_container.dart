@@ -37,30 +37,6 @@ class ButtonContainer extends StatelessWidget {
             ),
           ),
         ),
-        Expanded(
-          child: GestureDetector(
-            onTap: buyNowTap,
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              width: double.infinity,
-              decoration: const BoxDecoration(color: Colors.red, boxShadow: [
-                BoxShadow(
-                    offset: Offset(0, 4),
-                    blurRadius: 4,
-                    color: Color(0x40000000))
-              ]),
-              child: const Center(
-                child: Text(
-                  'Mua Ngay',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }

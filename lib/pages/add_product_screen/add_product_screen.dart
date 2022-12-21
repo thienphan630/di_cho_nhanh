@@ -211,6 +211,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                   type: productCategories(type),
                                   seller: sellerId)
                               .toMap());
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Đăng hàng thành công')));
                         } else {
                           log('error');
                         }

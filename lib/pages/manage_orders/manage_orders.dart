@@ -32,11 +32,10 @@ class _ManageOrderScreenState extends State<ManageOrderScreen> {
               itemBuilder: (context, index) {
                 QueryDocumentSnapshot<Map<String, dynamic>> data =
                     snapshot.data!.docs[index];
-
+                var buyerId = data.get('buyerId');
                 DocumentReference<Map<String, dynamic>> product =
                     FirebaseFirestore.instance
                         .collection('products')
-                        // .doc('btvxMjdfzPGOWaf8WHeP');
                         .doc(data.get('productId'));
                 String selectedStatus = data.get('status');
                 return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
@@ -46,47 +45,93 @@ class _ManageOrderScreenState extends State<ManageOrderScreen> {
                       if (subSnapshot.data!.get('seller') == userId) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 12),
-                          child: ListTile(
-                            leading: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(50)),
-                              child: Image.memory(
-                                base64Decode(subSnapshot.data!.get('image')),
-                                width: 50,
-                                height: 50,
-                                fit: BoxFit.cover,
+                          child: GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    var buyer = FirebaseFirestore.instance
+                                        .collection('users')
+                                        .doc(buyerId);
+                                    return AlertDialog(
+                                      content: StreamBuilder<
+                                              DocumentSnapshot<
+                                                  Map<String, dynamic>>>(
+                                          stream: buyer.snapshots(),
+                                          builder: (context, asnapshot) {
+                                            if (asnapshot.connectionState ==
+                                                ConnectionState.waiting) {
+                                              return const Center(
+                                                  child:
+                                                      CircularProgressIndicator());
+                                            } else if (asnapshot.hasData) {
+                                              return Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  const Text(
+                                                      'Thông tin người mua:'),
+                                                  Text(
+                                                      'Tên: ${asnapshot.data!.get('lastName')} ${asnapshot.data!.get('firstName')}'),
+                                                  Text(
+                                                      'Địa chỉ: ${asnapshot.data!.get('address')}'),
+                                                  Text(
+                                                      'Email: ${asnapshot.data!.get('email')}'),
+                                                  Text(
+                                                      'Số điện thoại: ${asnapshot.data!.get('phoneNumber')}'),
+                                                ],
+                                              );
+                                            } else {
+                                              return const Text('No data');
+                                            }
+                                          }),
+                                    );
+                                  });
+                            },
+                            child: ListTile(
+                              leading: ClipRRect(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(50)),
+                                child: Image.memory(
+                                  base64Decode(subSnapshot.data!.get('image')),
+                                  width: 50,
+                                  height: 50,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ),
-                            title: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${subSnapshot.data!.get('name')}',
-                                  style: const TextStyle(fontSize: 18),
-                                ),
-                                Text(
-                                  'Số lương đặt hàng: ${data.get('quantity')}',
-                                  style: const TextStyle(fontSize: 12),
-                                ),
-                              ],
-                            ),
-                            trailing: DropdownButton<String>(
-                              value: selectedStatus,
-                              onChanged: (newValue) {
-                                orders
-                                    .doc(data.id)
-                                    .update({'status': newValue});
-                                setState(() {
-                                  selectedStatus = newValue!;
-                                });
-                              },
-                              items: status
-                                  .map<DropdownMenuItem<String>>(
-                                      (String item) => DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(item),
-                                          ))
-                                  .toList(),
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${subSnapshot.data!.get('name')}',
+                                    style: const TextStyle(fontSize: 18),
+                                  ),
+                                  Text(
+                                    'Số lương đặt hàng: ${data.get('quantity')}',
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                              trailing: DropdownButton<String>(
+                                value: selectedStatus,
+                                onChanged: (newValue) {
+                                  orders
+                                      .doc(data.id)
+                                      .update({'status': newValue});
+                                  setState(() {
+                                    selectedStatus = newValue!;
+                                  });
+                                },
+                                items: status
+                                    .map<DropdownMenuItem<String>>(
+                                        (String item) =>
+                                            DropdownMenuItem<String>(
+                                              value: item,
+                                              child: Text(item),
+                                            ))
+                                    .toList(),
+                              ),
                             ),
                           ),
                         );

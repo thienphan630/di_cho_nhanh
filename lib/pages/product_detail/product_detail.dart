@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:di_cho_nhanh/models/add_to_cart_model.dart';
+import 'package:di_cho_nhanh/utilities/get_user_id.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/title_appbar.dart';
@@ -32,7 +33,7 @@ class ProductDetail extends StatelessWidget {
                 addToCartTap: () {
                   CollectionReference cart = FirebaseFirestore.instance
                       .collection('users')
-                      .doc('9AxMMbQDQetVKbp9kuWA')
+                      .doc(getUserId())
                       .collection('cart');
                   cart.get().then((value) {
                     for (QueryDocumentSnapshot<Object?> element in value.docs) {

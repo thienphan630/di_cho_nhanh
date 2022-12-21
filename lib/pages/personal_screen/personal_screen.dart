@@ -21,6 +21,9 @@ class Personal extends StatelessWidget {
       child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         stream: userInfor.snapshots(),
         builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
           if (snapshot.hasData) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
