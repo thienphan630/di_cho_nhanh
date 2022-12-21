@@ -23,13 +23,13 @@ class ProductDetail extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else {
-              Map<String, dynamic>? data = snapshot.data!.data();
+              var data = snapshot.data!;
               return ProductDetailContent(
-                name: data!['name'],
-                price: data['price'],
-                sold: data['sold'],
-                imageURL: data['image'],
-                stars: data['stars'],
+                name: data.get('name'),
+                price: data.get('price'),
+                sold: data.get('sold'),
+                imageURL: data.get('image'),
+                stars: data.get('stars'),
                 addToCartTap: () {
                   CollectionReference cart = FirebaseFirestore.instance
                       .collection('users')
@@ -68,6 +68,7 @@ class ProductDetail extends StatelessWidget {
                   });
                 },
                 buyNowTap: () {},
+                document: data.get('seller'),
               );
             }
           },
