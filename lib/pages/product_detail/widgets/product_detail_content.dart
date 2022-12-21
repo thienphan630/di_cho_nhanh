@@ -15,6 +15,7 @@ class ProductDetailContent extends StatelessWidget {
     required this.stars,
     required this.addToCartTap,
     required this.buyNowTap,
+    required this.document,
   }) : super(key: key);
   final String name;
   final num price;
@@ -23,6 +24,7 @@ class ProductDetailContent extends StatelessWidget {
   final num stars;
   final VoidCallback addToCartTap;
   final VoidCallback buyNowTap;
+  final String document;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -38,7 +40,7 @@ class ProductDetailContent extends StatelessWidget {
         ),
         ProductDetail(name: name, price: price, sold: sold),
         const Delivery(),
-        const StoreInformation(),
+        StoreInformation(document: document),
         ButtonContainer(
           addToCartTap: addToCartTap,
           buyNowTap: buyNowTap,

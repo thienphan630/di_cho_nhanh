@@ -5,7 +5,8 @@ const List<String> status = [
   'Chờ xử lý',
   'Đang chuẩn bị',
   'Đang giao',
-  'Hủy đơn hàng'
+  'Đã giao',
+  'Hủy đơn hàng',
 ];
 
 class OrderHistoryModel {
@@ -23,7 +24,6 @@ class OrderHistoryModel {
     required this.status,
     required this.time,
   });
-  
 
   OrderHistoryModel copyWith({
     String? productId,
@@ -67,7 +67,8 @@ class OrderHistoryModel {
 
   String toJson() => json.encode(toMap());
 
-  factory OrderHistoryModel.fromJson(String source) => OrderHistoryModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory OrderHistoryModel.fromJson(String source) =>
+      OrderHistoryModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -77,23 +78,22 @@ class OrderHistoryModel {
   @override
   bool operator ==(covariant OrderHistoryModel other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.productId == productId &&
-      other.sellerId == sellerId &&
-      other.quantity == quantity &&
-      other.buyerId == buyerId &&
-      other.status == status &&
-      other.time == time;
+
+    return other.productId == productId &&
+        other.sellerId == sellerId &&
+        other.quantity == quantity &&
+        other.buyerId == buyerId &&
+        other.status == status &&
+        other.time == time;
   }
 
   @override
   int get hashCode {
     return productId.hashCode ^
-      sellerId.hashCode ^
-      quantity.hashCode ^
-      buyerId.hashCode ^
-      status.hashCode ^
-      time.hashCode;
+        sellerId.hashCode ^
+        quantity.hashCode ^
+        buyerId.hashCode ^
+        status.hashCode ^
+        time.hashCode;
   }
 }
