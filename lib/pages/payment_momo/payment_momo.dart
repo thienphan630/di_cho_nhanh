@@ -132,6 +132,7 @@ class MomoPaymentState extends State<MomoPayment> {
     cart.get().then((value) {
       for (QueryDocumentSnapshot<Map<String, dynamic>> element in value.docs) {
         String id = element.get('id');
+        num quantity = element.get('quantity');
         var sellerId;
         FirebaseFirestore.instance
             .collection('products')
@@ -146,7 +147,7 @@ class MomoPaymentState extends State<MomoPayment> {
           orderHistory.add(OrderHistoryModel(
                   productId: id,
                   sellerId: sellerId,
-                  quantity: 1,
+                  quantity: quantity,
                   buyerId: userId,
                   status: status[0],
                   time: dateSlug)
