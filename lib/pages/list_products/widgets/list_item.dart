@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:di_cho_nhanh/models/agruments/product_type.dart';
+import 'package:di_cho_nhanh/utilities/get_user_id.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/add_to_cart_model.dart';
@@ -33,7 +34,8 @@ class ListItems extends StatelessWidget {
                             crossAxisCount: 2,
                             childAspectRatio: 2 / 3),
                     itemBuilder: (context, index) {
-                      QueryDocumentSnapshot<Map<String, dynamic>> data = snapshot.data!.docs[index];
+                      QueryDocumentSnapshot<Map<String, dynamic>> data =
+                          snapshot.data!.docs[index];
                       return Item(
                         name: data.get('name'),
                         imageURL: data.get('image'),
@@ -45,7 +47,7 @@ class ListItems extends StatelessWidget {
                         onBuyTap: () {
                           CollectionReference cart = FirebaseFirestore.instance
                               .collection('users')
-                              .doc('9AxMMbQDQetVKbp9kuWA')
+                              .doc(getUserId())
                               .collection('cart');
                           cart
                               .add(

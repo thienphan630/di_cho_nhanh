@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:di_cho_nhanh/widgets/app_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/search_appbar.dart';
 import 'widgets/categories_widgets.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -27,7 +27,7 @@ class CategoriesScreen extends StatelessWidget {
                   shape: BoxShape.circle, color: Color(0xFF84CBFF)),
             )),
         Scaffold(
-          appBar: appBarSearch(),
+          appBar: titleAppBar('Danh mục sản phẩm'),
           backgroundColor: Colors.transparent,
           body: Column(
             children: [

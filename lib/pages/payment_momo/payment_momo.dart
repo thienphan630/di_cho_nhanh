@@ -121,6 +121,55 @@ class MomoPaymentState extends State<MomoPayment> {
     });
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('THÀNH CÔNG: ${response.phoneNumber}')));
+    CollectionReference<Map<String, dynamic>> orderHistory =
+        FirebaseFirestore.instance.collection('order_history');
+    CollectionReference<Map<String, dynamic>> cart = FirebaseFirestore.instance
+        .collection('users')
+        .doc(getUserId())
+        .collection('cart');
+    String userId = getUserId();
+    //save history
+    cart.get().then((value) {
+      for (QueryDocumentSnapshot<Map<String, dynamic>> element in value.docs) {
+        String id = element.get('id');
+        var sellerId;
+        FirebaseFirestore.instance
+            .collection('products')
+            .doc(id)
+            .get()
+            .then((value) => {sellerId = value.get('seller')})
+            .then((_) {
+          //save to local history
+          DateTime today = DateTime.now();
+          String dateSlug =
+              "${today.year.toString()}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}";
+          orderHistory.add(OrderHistoryModel(
+                  productId: id,
+                  sellerId: sellerId,
+                  quantity: 1,
+                  buyerId: userId,
+                  status: status[0],
+                  time: dateSlug)
+              .toMap());
+        });
+
+        // tang san pham da ban them 1
+        // product.doc(id).update({'sold': FieldValue.increment(1)});
+      }
+    });
+    //delete cart
+    cart.get().then((snapshot) {
+      int length = snapshot.docs.length;
+      for (int i = 0; i < length; i++) {
+        QueryDocumentSnapshot<Map<String, dynamic>> data = snapshot.docs[i];
+        cart
+            .doc(data.id)
+            .delete()
+            .then((value) => log('Deleted'), onError: (e) => log('error: $e'));
+      }
+    });
+
+    Navigator.pop(context);
   }
 
   void _handlePaymentError(PaymentResponse response) {
@@ -137,7 +186,7 @@ class MomoPaymentState extends State<MomoPayment> {
       CollectionReference<Map<String, dynamic>> cart = FirebaseFirestore
           .instance
           .collection('users')
-          .doc('9AxMMbQDQetVKbp9kuWA')
+          .doc(getUserId())
           .collection('cart');
 
       cart.get().then((snapshot) {
@@ -160,25 +209,36 @@ class MomoPaymentState extends State<MomoPayment> {
         FirebaseFirestore.instance.collection('order_history');
     CollectionReference<Map<String, dynamic>> cart = FirebaseFirestore.instance
         .collection('users')
-        .doc('9AxMMbQDQetVKbp9kuWA')
+        .doc(getUserId())
         .collection('cart');
     String userId = getUserId();
     //save history
     cart.get().then((value) {
       for (QueryDocumentSnapshot<Map<String, dynamic>> element in value.docs) {
         String id = element.get('id');
-        //save to local history
-        orderHistory.add(OrderHistoryModel(
-                productId: id,
-                quantity: 1,
-                buyerId: userId,
-                status: 'unfinished')
-            .toMap());
-        // tang san pham da ban them 1
-        // product.doc(id).update({'sold': FieldValue.increment(1)});
+        var sellerId;
+        FirebaseFirestore.instance
+            .collection('products')
+            .doc(id)
+            .get()
+            .then((value) => {sellerId = value.get('seller')})
+            .then((_) {
+          //save to local history
+          DateTime today = DateTime.now();
+          String dateSlug =
+              "${today.year.toString()}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}";
+          orderHistory.add(OrderHistoryModel(
+                  productId: id,
+                  sellerId: sellerId,
+                  quantity: 1,
+                  buyerId: userId,
+                  status: status[0],
+                  time: dateSlug)
+              .toMap());
+        });
       }
     });
-    //delete cart
+    // delete cart
     cart.get().then((snapshot) {
       int length = snapshot.docs.length;
       for (int i = 0; i < length; i++) {

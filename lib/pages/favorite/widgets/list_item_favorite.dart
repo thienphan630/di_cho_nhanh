@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:di_cho_nhanh/utilities/get_user_id.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +23,7 @@ class ListItem extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
-          } else { 
+          } else {
             // log(snapshot.data!.docs.first.data().toString());
             return snapshot.hasData
                 ? GridView.builder(

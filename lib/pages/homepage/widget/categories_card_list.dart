@@ -31,7 +31,8 @@ class _CategoriesCardListState extends State<CategoriesCardList> {
                     scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
-                      QueryDocumentSnapshot<Map<String, dynamic>> data = snapshot.data!.docs[index];
+                      QueryDocumentSnapshot<Map<String, dynamic>> data =
+                          snapshot.data!.docs[index];
                       return CategoriesCartItem(
                         name: data.get('name'),
                         imageURL: data.get('image'),

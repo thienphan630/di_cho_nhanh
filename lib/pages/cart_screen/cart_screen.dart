@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:di_cho_nhanh/config/route_path.dart';
+import 'package:di_cho_nhanh/utilities/get_user_id.dart';
 import 'package:flutter/material.dart';
 
 import '../../constraints/styles.dart';
@@ -13,7 +14,7 @@ class ShoppingCart extends StatelessWidget {
   Widget build(BuildContext context) {
     CollectionReference<Map<String, dynamic>> cart = FirebaseFirestore.instance
         .collection('users')
-        .doc('9AxMMbQDQetVKbp9kuWA')
+        .doc(getUserId())
         .collection('cart');
 
     return Scaffold(
@@ -26,7 +27,8 @@ class ShoppingCart extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else {
-              for (QueryDocumentSnapshot<Map<String, dynamic>> element in snapshot.data!.docs) {
+              for (QueryDocumentSnapshot<Map<String, dynamic>> element
+                  in snapshot.data!.docs) {
                 total += (element.get('price') * element.get('quantity'));
               }
               return snapshot.hasData
