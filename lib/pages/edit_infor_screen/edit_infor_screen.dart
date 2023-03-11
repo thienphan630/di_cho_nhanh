@@ -83,7 +83,8 @@ class EditInforScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: titleAppBar('Chỉnh sửa thông tin'),
+      appBar:
+          titleAppBar(context: context, title: 'Chỉnh sửa thông tin'),
       body: SingleChildScrollView(
         child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
           stream: user.snapshots(),

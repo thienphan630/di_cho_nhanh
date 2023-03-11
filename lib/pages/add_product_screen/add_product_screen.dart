@@ -30,7 +30,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
     final formKey = GlobalKey<FormState>();
     return Scaffold(
-      appBar: titleAppBar('Đăng hàng mới'),
+      appBar: titleAppBar(context: context, title: 'Đăng hàng mới'),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

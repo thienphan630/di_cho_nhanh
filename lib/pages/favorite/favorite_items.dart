@@ -10,7 +10,7 @@ class FavoriteItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: titleAppBar('Hàng hóa'),
+      appBar: titleAppBar(context: context, title: 'Hàng hóa'),
       backgroundColor: const Color(0xFFF0EFEF),
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 2 * kDefaultPadding),

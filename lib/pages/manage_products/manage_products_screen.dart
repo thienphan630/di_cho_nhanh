@@ -21,7 +21,7 @@ class ManageProductsScreen extends StatelessWidget {
     CollectionReference<Map<String, dynamic>> allProducts =
         FirebaseFirestore.instance.collection('products');
     return Scaffold(
-      appBar: titleAppBar('Hàng hóa của bạn'),
+      appBar: titleAppBar(context: context, title: 'Hàng hóa của bạn'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
         child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(

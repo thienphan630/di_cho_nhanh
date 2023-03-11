@@ -16,7 +16,6 @@ import '../pages/list_products/list_products_screen.dart';
 import '../pages/auth_screen/login_screen.dart';
 import '../pages/main_layout.dart';
 import '../pages/not_found_page.dart';
-import '../pages/payment_momo/payment_momo.dart';
 import '../pages/product_detail/product_detail.dart';
 import '../pages/splash_screen/splash.dart';
 import 'route_path.dart';
@@ -77,12 +76,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
             builder: (context) => ProductDetail(
                   id: agrs.id,
                 ));
-      }
-    case RoutePath.momoPayment:
-      {
-        final agrs = settings.arguments as num;
-        return MaterialPageRoute(
-            builder: (context) => MomoPayment(price: agrs));
       }
     case RoutePath.searchScreen:
       return MaterialPageRoute(builder: (context) => const SearchScreen());

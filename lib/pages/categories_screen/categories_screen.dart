@@ -27,7 +27,8 @@ class CategoriesScreen extends StatelessWidget {
                   shape: BoxShape.circle, color: Color(0xFF84CBFF)),
             )),
         Scaffold(
-          appBar: titleAppBar('Danh mục sản phẩm'),
+          appBar: titleAppBar(
+              context: context, title: 'Danh mục sản phẩm'),
           backgroundColor: Colors.transparent,
           body: Column(
             children: [

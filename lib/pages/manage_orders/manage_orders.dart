@@ -22,7 +22,7 @@ class _ManageOrderScreenState extends State<ManageOrderScreen> {
         FirebaseFirestore.instance.collection('order_history');
 
     return Scaffold(
-      appBar: titleAppBar('Danh sách đơn hàng'),
+      appBar: titleAppBar(context: context, title: 'Danh sách đơn hàng'),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: orders.snapshots(),
         builder: (context, snapshot) {

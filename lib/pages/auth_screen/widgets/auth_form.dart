@@ -219,19 +219,18 @@ class _FormAuthState extends State<FormAuth> {
                     ),
                   );
                   FirebaseFirestore.instance.collection(collection).doc(userId);
+
                   authType == AuthType.login
                       ? role == Role.buyer
-                          ? Navigator.pushReplacementNamed(
-                              context, RoutePath.home)
-                          : Navigator.pushReplacementNamed(
-                              context, RoutePath.home)
+                          ? Navigator.pushNamedAndRemoveUntil(
+                              context, RoutePath.home, (route) => false)
+                          : Navigator.pushNamedAndRemoveUntil(
+                              context, RoutePath.home, (route) => false)
                       : role == Role.buyer
-                          ? Navigator.pushReplacementNamed(
-                              context, RoutePath.addUserInfor,
-                              arguments: phoneController.text)
-                          : Navigator.pushReplacementNamed(
-                              context, RoutePath.addSellerInfor,
-                              arguments: phoneController.text);
+                          ? Navigator.pushNamedAndRemoveUntil(
+                              context, RoutePath.addUserInfor, (route) => false)
+                          : Navigator.pushNamedAndRemoveUntil(context,
+                              RoutePath.addSellerInfor, (route) => false);
                 } catch (e) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(content: Text(e.toString())));
