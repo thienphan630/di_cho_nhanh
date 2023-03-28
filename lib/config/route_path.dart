@@ -40,6 +40,9 @@ class RoutePath {
   ///edit informain screen
   static const String editInf = '/edit_inf';
 
+  ///personal screen
+  static const String personal = '/personal';
+
   ///orders history
   static const String ordersHistory = '/order_history';
 }

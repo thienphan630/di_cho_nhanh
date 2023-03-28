@@ -11,7 +11,7 @@ class StoreInformation extends StatelessWidget {
   final String document;
   @override
   Widget build(BuildContext context) {
-    var store_inf =
+    var storeInf =
         FirebaseFirestore.instance.collection('sellers').doc(document);
 
     return Container(
@@ -33,7 +33,7 @@ class StoreInformation extends StatelessWidget {
               )),
           Expanded(
             child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                stream: store_inf.snapshots(),
+                stream: storeInf.snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());

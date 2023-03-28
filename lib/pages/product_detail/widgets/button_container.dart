@@ -18,6 +18,7 @@ class ButtonContainer extends StatelessWidget {
             onTap: addToCartTap,
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 12),
+              margin: const EdgeInsets.only(bottom: 12),
               width: double.infinity,
               decoration: const BoxDecoration(color: Colors.white, boxShadow: [
                 BoxShadow(
