@@ -18,7 +18,8 @@ class _ChartScreenState extends State<ChartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: titleAppBar('Người đã mua hàng'),
+      appBar:
+          titleAppBar(context: context, title: 'Người đã mua hàng'),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: orders.snapshots(),
         builder: (context, snapshot) {

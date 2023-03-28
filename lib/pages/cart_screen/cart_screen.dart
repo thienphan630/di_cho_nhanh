@@ -19,7 +19,7 @@ class ShoppingCart extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF0EFEF),
-      appBar: titleAppBar('Giỏ hàng'),
+      appBar: titleAppBar(context: context, title: 'Giỏ hàng'),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: cart.snapshots(),
           builder: (context, snapshot) {

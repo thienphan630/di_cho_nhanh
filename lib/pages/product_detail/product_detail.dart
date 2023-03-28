@@ -15,7 +15,7 @@ class ProductDetail extends StatelessWidget {
         FirebaseFirestore.instance.collection('products').doc(id);
     bool isInCart = false;
     return Scaffold(
-      appBar: titleAppBar('Chi tiết sản phẩm'),
+      appBar: titleAppBar(context: context, title: 'Chi tiết sản phẩm', isHavebackButton: true),
       body: SingleChildScrollView(
         child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
           stream: products.snapshots(),

@@ -50,3 +50,5 @@ app.*.map.json
 /android/daemon
 /android/native
 /android/wrapper
+/android/.tmp
+/android/kotlin-profile

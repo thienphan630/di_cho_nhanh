@@ -16,7 +16,8 @@ class OrdersHistoryScreen extends StatelessWidget {
         .collection('order_history')
         .where('buyerId', isEqualTo: id);
     return Scaffold(
-      appBar: titleAppBar('Lịch sử đặt hàng'),
+      appBar: titleAppBar(
+          context: context, title: 'Lịch sử đặt hàng', isHavebackButton: true),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: orders.snapshots(),
         builder: (context, snapshot) {

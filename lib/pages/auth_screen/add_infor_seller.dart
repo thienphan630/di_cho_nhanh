@@ -28,7 +28,8 @@ class _AddSellerInformationState extends State<AddSellerInformation> {
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     return Scaffold(
-      appBar: titleAppBar('Thông tin người dùng'),
+      appBar:
+          titleAppBar(context: context, title: 'Thông tin người dùng'),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Form(

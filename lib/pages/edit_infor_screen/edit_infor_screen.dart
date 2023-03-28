@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:di_cho_nhanh/config/route_path.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -83,7 +84,10 @@ class EditInforScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: titleAppBar('Chỉnh sửa thông tin'),
+      appBar: titleAppBar(
+          context: context,
+          title: 'Chỉnh sửa thông tin',
+          isHavebackButton: true),
       body: SingleChildScrollView(
         child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
           stream: user.snapshots(),
@@ -153,13 +157,14 @@ class EditInforScreen extends StatelessWidget {
                                 'lastName': lastName.text,
                                 'email': email.text,
                                 'address': address.text,
-                              }).then((value) => {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(const SnackBar(
-                                              content:
-                                                  Text('Cập nhật thành công')))
-                                    });
+                              }).then((value) {
+                                
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('Cập nhật thành công')));
+                              });
                         FocusManager.instance.primaryFocus?.unfocus();
+                        Navigator.pop(context);
                       },
                       child: const Text('Cập nhật'))
                 ],

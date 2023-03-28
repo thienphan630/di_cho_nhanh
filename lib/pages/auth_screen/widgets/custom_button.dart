@@ -12,16 +12,18 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      width: double.infinity,
-      decoration: const BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.all(Radius.circular(12.0))),
-      child: TextButton(
-        onPressed: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        padding: const EdgeInsets.all(kDefaultPadding),
+        width: double.infinity,
+        decoration: const BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.all(Radius.circular(12.0))),
         child: Text(
           text,
+          textAlign: TextAlign.center,
           style: const TextStyle(
               color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
         ),
