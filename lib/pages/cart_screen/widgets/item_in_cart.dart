@@ -90,7 +90,7 @@ class ItemInCart extends StatelessWidget {
                       Text(
                         quantity.toStringAsFixed(1),
                         style: const TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500),
+                            fontSize: 12, fontWeight: FontWeight.w500),
                       ),
                       GestureDetector(
                         onTap: onPlusTap,
@@ -102,7 +102,7 @@ class ItemInCart extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: onDeleteTap,
-                        child: const Icon(Icons.delete),
+                        child: const Icon(Icons.delete, size: 16),
                       )
                     ],
                   ),

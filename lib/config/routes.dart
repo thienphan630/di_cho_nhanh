@@ -1,4 +1,5 @@
 import 'package:di_cho_nhanh/pages/orders_history_screen/orders_history_screen.dart';
+import 'package:di_cho_nhanh/pages/personal_screen/personal_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -48,6 +49,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //shared
     case RoutePath.editInf:
       return MaterialPageRoute(builder: (context) => const EditInforScreen());
+    case RoutePath.personal:
+      return MaterialPageRoute(builder: (context) => const Personal());
+
     // users
     case RoutePath.home:
       return MaterialPageRoute(
