@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class CategoriesCartItem extends StatelessWidget {
   const CategoriesCartItem({
-    required this.name,
     Key? key,
+    required this.name,
     required this.onTap,
     required this.imageURL,
   }) : super(key: key);
@@ -18,8 +18,8 @@ class CategoriesCartItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
         width: 120,
-        height: 110,
         decoration: const BoxDecoration(
             color: Color.fromRGBO(132, 203, 255, 0.8),
             borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -36,8 +36,8 @@ class CategoriesCartItem extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(50)),
               child: Image.memory(
                 base64Decode(imageURL),
-                width: 100,
-                height: 100,
+                width: 86,
+                height: 86,
                 fit: BoxFit.cover,
               ),
             ),

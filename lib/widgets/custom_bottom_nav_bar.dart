@@ -9,7 +9,6 @@ import '../pages/add_product_screen/add_product_screen.dart';
 import '../pages/auth_screen/auth_screen.dart';
 import '../pages/categories_screen/categories_screen.dart';
 import '../pages/chart_screen/chart_screen.dart';
-import '../pages/favorite/favorite_items.dart';
 import '../pages/homepage/homepage.dart';
 import '../pages/cart_screen/cart_screen.dart';
 import '../pages/manage_orders/manage_orders.dart';
@@ -52,10 +51,6 @@ List<BottomNavigationBarItem> buyer = [
   ),
   const BottomNavigationBarItem(
     icon: Icon(Icons.shopping_cart_outlined),
-    label: '',
-  ),
-  const BottomNavigationBarItem(
-    icon: Icon(Icons.favorite_border),
     label: '',
   ),
   const BottomNavigationBarItem(
@@ -120,10 +115,8 @@ Widget nav(int index, Role role) {
       case 1:
         return const CategoriesScreen();
       case 2:
-        return const FavoriteItems();
-      case 3:
         return const ShoppingCart();
-      case 4:
+      case 3:
         {
           if (FirebaseAuth.instance.currentUser != null) {
             return const Personal();

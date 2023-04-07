@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,10 +9,12 @@ class TopSearchItem extends StatefulWidget {
   const TopSearchItem({
     Key? key,
     required this.name,
+    required this.imageURL,
     required this.onTap,
     required this.onFavoriteTap,
   }) : super(key: key);
   final String name;
+  final String imageURL;
   final VoidCallback onTap;
   final VoidCallback onFavoriteTap;
 
@@ -68,12 +72,9 @@ class _TopSearchItemState extends State<TopSearchItem> {
                         onTap: widget.onFavoriteTap,
                         child: Consumer<FavoriteProvider>(
                             builder: (_, favorite, __) {
-                          return Icon(
-                            favorite.isFavorite
-                                ? Icons.favorite
-                                : Icons.favorite_border,
-                            color:
-                                favorite.isFavorite ? Colors.red : Colors.white,
+                          return const Icon(
+                            Icons.favorite,
+                            color: Colors.red,
                             size: 16,
                           );
                         }),
@@ -84,10 +85,15 @@ class _TopSearchItemState extends State<TopSearchItem> {
               ],
             ),
           ),
-          const CircleAvatar(
-            maxRadius: 40,
-            backgroundImage: AssetImage('assets/images/meat.png'),
-          )
+          ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(50)),
+            child: Image.memory(
+              base64Decode(widget.imageURL),
+              width: 80,
+              height: 80,
+              fit: BoxFit.cover,
+            ),
+          ),
         ],
       ),
     );

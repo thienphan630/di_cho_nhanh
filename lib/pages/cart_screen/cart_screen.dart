@@ -69,7 +69,7 @@ class ShoppingCart extends StatelessWidget {
                         ),
                         PaymentButton(
                           onPaymentTap: () {
-                            Navigator.pushNamed(context, RoutePath.momoPayment,
+                            Navigator.pushNamed(context, RoutePath.notFound,
                                 arguments: total);
                           },
                         )

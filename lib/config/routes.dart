@@ -1,6 +1,6 @@
+
 import 'package:di_cho_nhanh/pages/orders_history_screen/orders_history_screen.dart';
 import 'package:di_cho_nhanh/pages/personal_screen/personal_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../models/agruments/auth_agrument.dart';
@@ -22,14 +22,6 @@ import '../pages/splash_screen/splash.dart';
 import 'route_path.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
-  bool isLogin = false;
-  FirebaseAuth.instance.authStateChanges().listen((User? user) {
-    if (user != null) {
-      isLogin = true;
-    } else {
-      isLogin = false;
-    }
-  });
   switch (settings.name) {
     //login
     case RoutePath.login:
@@ -54,9 +46,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     // users
     case RoutePath.home:
-      return MaterialPageRoute(
-          builder: (context) =>
-              isLogin ? const MainLayout() : const AuthScreen());
+      return MaterialPageRoute(builder: (context) => const MainLayout());
     case RoutePath.auth:
       return MaterialPageRoute(builder: (context) => const AuthScreen());
     case RoutePath.addUserInfor:

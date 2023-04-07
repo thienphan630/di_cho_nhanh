@@ -1,21 +1,25 @@
 import 'dart:convert';
 
 class FavoriteModel {
+  final String id;
   final String name;
   final String image;
-  final double price;
+  final num price;
   FavoriteModel({
+    required this.id,
     required this.name,
     required this.image,
     required this.price,
   });
 
   FavoriteModel copyWith({
+    String? id,
     String? name,
     String? image,
-    double? price,
+    num? price,
   }) {
     return FavoriteModel(
+      id: id ?? this.id,
       name: name ?? this.name,
       image: image ?? this.image,
       price: price ?? this.price,
@@ -24,6 +28,7 @@ class FavoriteModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'name': name,
       'image': image,
       'price': price,
@@ -32,9 +37,10 @@ class FavoriteModel {
 
   factory FavoriteModel.fromMap(Map<String, dynamic> map) {
     return FavoriteModel(
+      id: map['id'] as String,
       name: map['name'] as String,
       image: map['image'] as String,
-      price: map['price'] as double,
+      price: map['price'] as num,
     );
   }
 
@@ -44,16 +50,22 @@ class FavoriteModel {
       FavoriteModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'FavoriteModel(name: $name, image: $image, price: $price)';
+  String toString() {
+    return 'FavoriteModel(id: $id, name: $name, image: $image, price: $price)';
+  }
 
   @override
   bool operator ==(covariant FavoriteModel other) {
     if (identical(this, other)) return true;
 
-    return other.name == name && other.image == image && other.price == price;
+    return other.id == id &&
+        other.name == name &&
+        other.image == image &&
+        other.price == price;
   }
 
   @override
-  int get hashCode => name.hashCode ^ image.hashCode ^ price.hashCode;
+  int get hashCode {
+    return id.hashCode ^ name.hashCode ^ image.hashCode ^ price.hashCode;
+  }
 }

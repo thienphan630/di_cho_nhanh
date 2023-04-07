@@ -6,5 +6,6 @@ class FavoriteProvider with ChangeNotifier {
   void changeFavorite() {
     _isFavorite = !_isFavorite;
     notifyListeners();
+    
   }
 }
