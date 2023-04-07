@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:di_cho_nhanh/functions/snackbar_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -114,9 +115,10 @@ class _FormAuthState extends State<FormAuth> {
         .get()
         .then((value) {
       if (value.docs.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text(
-                'Số điện thoại này chưa được đăng ký!\nVui lòng quay lại trang trước để đăng ký!')));
+        snackbarMessage(
+            context: context,
+            message:
+                'Số điện thoại này chưa được đăng ký!\nVui lòng quay lại trang trước để đăng ký!');
       } else {
         _verifyPhone();
         setState(() {
@@ -135,8 +137,9 @@ class _FormAuthState extends State<FormAuth> {
         log('$credential');
       },
       verificationFailed: (FirebaseAuthException e) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Số điện thoại không hợp lệ!\nVui lòng nhập lại!')));
+        snackbarMessage(
+            context: context,
+            message: 'Số điện thoại không hợp lệ!\nVui lòng nhập lại!');
       },
       timeout: const Duration(seconds: 60),
       codeSent: (String verificationId, int? resendToken) {
@@ -211,13 +214,11 @@ class _FormAuthState extends State<FormAuth> {
                       .updateRole(role);
                   saveUserToLocal(UserLocalModal(role: role.name, id: userId));
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(authType == AuthType.login
+                  snackbarMessage(
+                      context: context,
+                      message: authType == AuthType.login
                           ? 'Đăng nhập thành công'
-                          : 'Đăng ký thành công'),
-                    ),
-                  );
+                          : 'Đăng ký thành công');
                   FirebaseFirestore.instance.collection(collection).doc(userId);
 
                   authType == AuthType.login
@@ -232,8 +233,7 @@ class _FormAuthState extends State<FormAuth> {
                           : Navigator.pushNamedAndRemoveUntil(context,
                               RoutePath.addSellerInfor, (route) => false);
                 } catch (e) {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text(e.toString())));
+                  snackbarMessage(context: context, message: 'Lỗi: $e');
                 }
               },
               child: const Text('Ok'),

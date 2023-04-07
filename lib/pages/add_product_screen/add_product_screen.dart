@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:di_cho_nhanh/functions/snackbar_message.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/agruments/product_type.dart';
@@ -211,9 +212,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                   type: productCategories(type),
                                   seller: sellerId)
                               .toMap());
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text('Đăng hàng thành công')));
+                          snackbarMessage(
+                              context: context,
+                              message: 'Đăng hàng thành công');
                         } else {
                           log('error');
                         }

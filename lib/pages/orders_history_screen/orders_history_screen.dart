@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:di_cho_nhanh/functions/snackbar_message.dart';
 import 'package:di_cho_nhanh/models/order_history_model.dart';
 import 'package:di_cho_nhanh/utilities/get_user_id.dart';
 import 'package:di_cho_nhanh/widgets/app_widget.dart';
@@ -82,10 +83,10 @@ class OrdersHistoryScreen extends StatelessWidget {
                                                 'status': status[3]
                                               }).then((_) {
                                                 Navigator.pop(context);
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(const SnackBar(
-                                                        content: Text(
-                                                            'Huỷ đơn hàng thành công')));
+                                                snackbarMessage(
+                                                    context: context,
+                                                    message:
+                                                        'Huỷ đơn hàng thành công');
                                               });
                                             },
                                             child: const Text('Có'),

@@ -54,8 +54,8 @@ class Homepage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _topic('Danh mục'),
-                    const SizedBox(height: 130, child: CategoriesCardList()),
-                    _topic('Tìm kiếm hàng đầu'),
+                    const SizedBox(height: 150, child: CategoriesCardList()),
+                    _topic('Sản phẩm ưa thích'),
                     const SizedBox(height: 200, child: TopSearch())
                   ],
                 ))

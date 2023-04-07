@@ -31,9 +31,6 @@ class RoutePath {
   ///list product
   static const String listProduct = '/list_product';
 
-  ///payment with momo
-  static const String momoPayment = '/momoPayment';
-
   ///add product
   static const String addProduct = '/add_product';
 
@@ -45,4 +42,7 @@ class RoutePath {
 
   ///orders history
   static const String ordersHistory = '/order_history';
+
+  ///not found
+  static const String notFound = '/404';
 }

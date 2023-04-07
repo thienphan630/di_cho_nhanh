@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:di_cho_nhanh/config/route_path.dart';
+import 'package:di_cho_nhanh/functions/snackbar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -143,12 +143,11 @@ class EditInforScreen extends StatelessWidget {
                                 'email': email.text,
                                 'address': address.text,
                                 'storeName': storeName.text,
-                              }).then((value) => {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(const SnackBar(
-                                              content:
-                                                  Text('Cập nhật thành công')))
-                                    })
+                              }).then((value) {
+                                snackbarMessage(
+                                    context: context,
+                                    message: 'Cập nhật thành công');
+                              })
                             : FirebaseFirestore.instance
                                 .collection('users')
                                 .doc(getUserId())
@@ -158,10 +157,9 @@ class EditInforScreen extends StatelessWidget {
                                 'email': email.text,
                                 'address': address.text,
                               }).then((value) {
-                                
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('Cập nhật thành công')));
+                                snackbarMessage(
+                                    context: context,
+                                    message: 'Cập nhật thành công');
                               });
                         FocusManager.instance.primaryFocus?.unfocus();
                         Navigator.pop(context);
