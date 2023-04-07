@@ -5,15 +5,15 @@ import 'package:provider/provider.dart';
 
 import '../constraints/constraints.dart';
 import '../models/agruments/auth_agrument.dart';
-import '../pages/add_product_screen/add_product_screen.dart';
-import '../pages/auth_screen/auth_screen.dart';
-import '../pages/categories_screen/categories_screen.dart';
-import '../pages/chart_screen/chart_screen.dart';
-import '../pages/homepage/homepage.dart';
-import '../pages/cart_screen/cart_screen.dart';
-import '../pages/manage_orders/manage_orders.dart';
-import '../pages/manage_products/manage_products_screen.dart';
-import '../pages/personal_screen/personal_screen.dart';
+import '../pages/sellers/add_product_screen/add_product_screen.dart';
+import '../pages/Shared/auth_screen/auth_screen.dart';
+import '../pages/buyers/categories_screen/categories_screen.dart';
+import '../pages/sellers/chart_screen/chart_screen.dart';
+import '../pages/Shared/homepage/homepage.dart';
+import '../pages/buyers/cart_screen/cart_screen.dart';
+import '../pages/sellers/manage_orders/manage_orders.dart';
+import '../pages/sellers/manage_products/manage_products_screen.dart';
+import '../pages/Shared/personal_screen/personal_screen.dart';
 import '../providers/auth_provider.dart';
 import '../providers/bottom_nav_provider.dart';
 

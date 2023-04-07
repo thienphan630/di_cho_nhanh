@@ -1,24 +1,24 @@
 
-import 'package:di_cho_nhanh/pages/orders_history_screen/orders_history_screen.dart';
-import 'package:di_cho_nhanh/pages/personal_screen/personal_screen.dart';
+import 'package:di_cho_nhanh/pages/sellers/orders_history_screen/orders_history_screen.dart';
+import 'package:di_cho_nhanh/pages/Shared/personal_screen/personal_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../models/agruments/auth_agrument.dart';
 import '../models/agruments/product_type.dart';
 import '../models/agruments/product_agrument.dart';
-import '../pages/add_product_screen/add_product_screen.dart';
-import '../pages/auth_screen/add_infor_seller.dart';
-import '../pages/auth_screen/add_infor_users.dart';
-import '../pages/auth_screen/auth_screen.dart';
-import '../pages/auth_screen/login_with_phone_screen.dart';
-import '../pages/edit_infor_screen/edit_infor_screen.dart';
-import '../pages/homepage/widget/search_screen.dart';
-import '../pages/list_products/list_products_screen.dart';
-import '../pages/auth_screen/login_screen.dart';
+import '../pages/sellers/add_product_screen/add_product_screen.dart';
+import '../pages/Shared/auth_screen/add_infor_seller.dart';
+import '../pages/Shared/auth_screen/add_infor_users.dart';
+import '../pages/Shared/auth_screen/auth_screen.dart';
+import '../pages/Shared/auth_screen/login_with_phone_screen.dart';
+import '../pages/Shared/edit_infor_screen/edit_infor_screen.dart';
+import '../pages/Shared/homepage/widget/search_screen.dart';
+import '../pages/buyers/list_products/list_products_screen.dart';
+import '../pages/Shared/auth_screen/login_screen.dart';
 import '../pages/main_layout.dart';
 import '../pages/not_found_page.dart';
-import '../pages/product_detail/product_detail.dart';
-import '../pages/splash_screen/splash.dart';
+import '../pages/buyers/product_detail/product_detail.dart';
+import '../pages/Shared/splash_screen/splash.dart';
 import 'route_path.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
