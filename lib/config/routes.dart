@@ -1,5 +1,5 @@
 
-import 'package:di_cho_nhanh/pages/sellers/orders_history_screen/orders_history_screen.dart';
+import 'package:di_cho_nhanh/pages/buyers/orders_history_screen/orders_history_screen.dart';
 import 'package:di_cho_nhanh/pages/Shared/personal_screen/personal_screen.dart';
 import 'package:flutter/material.dart';
 

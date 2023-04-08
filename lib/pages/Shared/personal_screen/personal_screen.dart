@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:di_cho_nhanh/functions/auth_func.dart';
+import 'package:di_cho_nhanh/pages/Shared/personal_screen/widgets/setting_page_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -83,77 +84,29 @@ class Personal extends StatelessWidget {
                 ),
                 const Divider(thickness: 2),
                 role == Role.buyer
-                    ? GestureDetector(
+                    ? SettingPageButton(
+                        title: 'Lịch sử đặt hàng',
                         onTap: () {
                           Navigator.pushNamed(context, RoutePath.ordersHistory);
                         },
-                        child: Container(
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.all(16),
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 52, vertical: 12),
-                          decoration: const BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16))),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Icon(Icons.history),
-                              SizedBox(width: 12),
-                              Text(
-                                'Lịch sử đặt hàng',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                        ),
-                      )
+                        icon: const Icon(Icons.history))
                     : const SizedBox(),
-                GestureDetector(
+                SettingPageButton(
+                  title: 'Chỉnh sửa thông tin',
                   onTap: () {
                     Navigator.pushNamed(context, RoutePath.editInf);
                   },
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(16),
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 52, vertical: 12),
-                    decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.all(Radius.circular(16))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.change_circle),
-                        SizedBox(width: 12),
-                        Text(
-                          'Chỉnh sửa thông tin',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
+                  icon: const Icon(Icons.change_circle),
                 ),
                 const Spacer(),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  alignment: Alignment.center,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _signOut();
+                SettingPageButton(
+                    title: 'Đăng xuất',
+                    onTap: () {
+                      signOut();
                       deleteUser();
                       Navigator.pushNamed(context, RoutePath.auth);
                     },
-                    child: const Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                      child: Text('Đăng xuất', style: TextStyle(fontSize: 16)),
-                    ),
-                  ),
-                ),
+                    icon: const Icon(Icons.logout))
               ],
             );
           } else {
@@ -162,21 +115,5 @@ class Personal extends StatelessWidget {
         },
       ),
     );
-    // return ElevatedButton(
-    //   onPressed: () {
-    //     _signOut();
-    //     deleteUser();
-    //     Navigator.pushNamed(context, RoutePath.auth);
-    //   },
-    //   child: const Padding(
-    //     padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-    //     child: Text('Đăng xuất', style: TextStyle(fontSize: 16)),
-    //   ),
-    // );
   }
-}
-
-/// Sign out firebase authentication
-Future<void> _signOut() async {
-  await FirebaseAuth.instance.signOut();
 }

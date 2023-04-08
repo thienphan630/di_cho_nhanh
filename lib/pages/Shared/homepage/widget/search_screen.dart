@@ -25,8 +25,7 @@ class _SearchScreenState extends State<SearchScreen> {
     Query<Map<String, dynamic>> products = FirebaseFirestore.instance
         .collection('products')
         .where('name', isGreaterThanOrEqualTo: searchQuery)
-        // ignore: prefer_interpolation_to_compose_strings
-        .where('name', isLessThanOrEqualTo: searchQuery + "\uf8ff");
+        .where('name', isLessThanOrEqualTo: "$searchQuery\uf8ff");
 
     return SafeArea(
       child: Scaffold(

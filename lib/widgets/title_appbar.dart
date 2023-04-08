@@ -8,14 +8,16 @@ PreferredSizeWidget titleAppBar(
     automaticallyImplyLeading: false,
     centerTitle: true,
     backgroundColor: Colors.white,
-    leading: (isHavebackButton!=null&&isHavebackButton)? BackButton(
-      color: const Color(0xFFC68F02),
-      onPressed: (() => Navigator.pop(context)),
-    ):null,
+    leading: (isHavebackButton != null && isHavebackButton)
+        ? BackButton(
+            color: Colors.black,
+            onPressed: (() => Navigator.pop(context)),
+          )
+        : null,
     title: Text(
       title,
       style: const TextStyle(
-          color: Color(0xFFC68F02), fontSize: 20, fontWeight: FontWeight.w700),
+          color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),
     ),
   );
 }

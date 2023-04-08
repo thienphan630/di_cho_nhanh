@@ -86,17 +86,19 @@ class TitleUserInfor extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(snapshot.data!.get('firstName'),
-                    style: const TextStyle(
-                        color: kBlackColor,
-                        height: 0.7,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700)),
                 const Text('Xin chào!',
                     style: TextStyle(
                         color: kBlackColor,
                         fontSize: 14,
-                        fontWeight: FontWeight.w400))
+                        fontWeight: FontWeight.w400)),
+                Text(
+                    snapshot.data!.get('firstName') +
+                        ' ' +
+                        snapshot.data!.get('lastName'),
+                    style: const TextStyle(
+                        color: kBlackColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700)),
               ],
             );
           } else {
