@@ -1,10 +1,11 @@
 import 'dart:developer';
 
 import 'package:di_cho_nhanh/config/route_path.dart';
+import 'package:di_cho_nhanh/functions/auth_func.dart';
+import 'package:di_cho_nhanh/utilities/get_user_id.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../config/routes.dart';
-import '../providers/auth_provider.dart';
 import '../widgets/app_theme.dart';
 
 class MyApp extends StatefulWidget {
@@ -26,7 +27,7 @@ class _MyAppState extends State<MyApp> {
 
   void isUserLogin() async {
     if (FirebaseAuth.instance.currentUser != null) {
-      log("User is already logged in");
+      log("User is already logged in with id: ${getUserId()}");
       isLogin = true;
     } else {
       log("No User");

@@ -26,20 +26,21 @@ class Delivery extends StatelessWidget {
         children: [
           const Text(
             'Vận chuyển tới: ',
-            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           ),
           Expanded(
             child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                 stream: users.snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      child: CircularProgressIndicator()
-                    );
+                    return const Center(child: CircularProgressIndicator());
                   }
                   return Text(
                     '${snapshot.data!.get('address')}',
-                    style: const TextStyle(fontSize: 12),
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   );

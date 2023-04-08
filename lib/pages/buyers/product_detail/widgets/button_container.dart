@@ -17,15 +17,19 @@ class ButtonContainer extends StatelessWidget {
           child: GestureDetector(
             onTap: addToCartTap,
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              margin: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.all(12),
+              margin: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
               width: double.infinity,
-              decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-                BoxShadow(
-                    offset: Offset(0, 4),
-                    blurRadius: 4,
-                    color: Color(0x40000000))
-              ]),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(width: 2),
+                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  boxShadow: const [
+                    BoxShadow(
+                        offset: Offset(0, 4),
+                        blurRadius: 4,
+                        color: Color(0x40000000))
+                  ]),
               child: const Center(
                 child: Text(
                   'Thêm vào giỏ hàng',

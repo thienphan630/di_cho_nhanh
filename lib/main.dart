@@ -6,7 +6,6 @@ import 'firebase_options.dart';
 import 'pages/app.dart';
 import 'providers/auth_provider.dart';
 import 'providers/bottom_nav_provider.dart';
-import 'providers/favorite_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,9 +19,6 @@ void main() async {
     providers: [
       ChangeNotifierProvider(
         create: (_) => BottomIndex(),
-      ),
-      ChangeNotifierProvider(
-        create: (_) => FavoriteProvider(),
       ),
       ChangeNotifierProvider(
         create: (_) => AuthProvider(),

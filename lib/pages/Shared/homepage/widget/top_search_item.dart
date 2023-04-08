@@ -1,9 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../../../providers/favorite_provider.dart';
 
 class TopSearchItem extends StatefulWidget {
   const TopSearchItem({
@@ -70,14 +67,11 @@ class _TopSearchItemState extends State<TopSearchItem> {
                       ]),
                       GestureDetector(
                         onTap: widget.onFavoriteTap,
-                        child: Consumer<FavoriteProvider>(
-                            builder: (_, favorite, __) {
-                          return const Icon(
-                            Icons.favorite,
-                            color: Colors.red,
-                            size: 16,
-                          );
-                        }),
+                        child: const Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                          size: 16,
+                        ),
                       )
                     ],
                   ),
