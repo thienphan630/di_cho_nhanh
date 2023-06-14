@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TotalPayment extends StatelessWidget {
   const TotalPayment({
-    Key? key, required this.total,
+    Key? key,
+    required this.total,
   }) : super(key: key);
   final num total;
   @override
@@ -15,7 +17,7 @@ class TotalPayment extends StatelessWidget {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
         Text(
-          '$total đ',
+          "${NumberFormat('###,000').format(total)} VND",
           style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,

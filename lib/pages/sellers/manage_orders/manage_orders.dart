@@ -18,8 +18,11 @@ class _ManageOrderScreenState extends State<ManageOrderScreen> {
   @override
   Widget build(BuildContext context) {
     String userId = getUserId();
-    CollectionReference<Map<String, dynamic>> orders =
-        FirebaseFirestore.instance.collection('order_history');
+    // CollectionReference<Map<String, dynamic>>
+    var orderUpdate = FirebaseFirestore.instance.collection('order_history');
+    var orders = FirebaseFirestore.instance
+        .collection('order_history')
+        .orderBy('time', descending: true);
 
     return Scaffold(
       appBar: titleAppBar(context: context, title: 'Danh sách đơn hàng'),
@@ -32,7 +35,7 @@ class _ManageOrderScreenState extends State<ManageOrderScreen> {
               itemBuilder: (context, index) {
                 QueryDocumentSnapshot<Map<String, dynamic>> data =
                     snapshot.data!.docs[index];
-                var buyerId = data.get('buyerId');
+                String buyerId = data.get('buyerId');
                 DocumentReference<Map<String, dynamic>> product =
                     FirebaseFirestore.instance
                         .collection('products')
@@ -108,7 +111,11 @@ class _ManageOrderScreenState extends State<ManageOrderScreen> {
                                     style: const TextStyle(fontSize: 18),
                                   ),
                                   Text(
-                                    'Số lương đặt hàng: ${data.get('quantity')}',
+                                    'Số lượng: ${data.get('quantity')}',
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                  Text(
+                                    '${data.get('time')}',
                                     style: const TextStyle(fontSize: 12),
                                   ),
                                 ],
@@ -116,7 +123,7 @@ class _ManageOrderScreenState extends State<ManageOrderScreen> {
                               trailing: DropdownButton<String>(
                                 value: selectedStatus,
                                 onChanged: (newValue) {
-                                  orders
+                                  orderUpdate
                                       .doc(data.id)
                                       .update({'status': newValue});
                                   setState(() {
