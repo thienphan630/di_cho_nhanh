@@ -58,7 +58,7 @@ class _TopSearchItemState extends State<TopSearchItem> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(children: const [
+                      const Row(children: [
                         Icon(Icons.star, color: Colors.amber, size: 16),
                         Text(
                           '5.0',

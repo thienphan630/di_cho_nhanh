@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../constraints/styles.dart';
 
@@ -32,8 +33,8 @@ class ItemInCart extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            width: size.width / 3.5,
-            height: 160,
+            width: size.width / 3.6,
+            height: 140,
             alignment: Alignment.center,
             decoration: const BoxDecoration(
                 color: Color(0xFF84CBFF),
@@ -42,8 +43,8 @@ class ItemInCart extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(50)),
               child: Image.memory(
                 base64Decode(imageURL),
-                width: 100,
-                height: 100,
+                width: 90,
+                height: 90,
                 fit: BoxFit.cover,
               ),
             ),
@@ -58,24 +59,27 @@ class ItemInCart extends StatelessWidget {
                     bottomRight: Radius.circular(10))),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
-                  flex: 2,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(name,
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w700)),
-                      Text('$price đ/Kg',
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500)),
-                    ],
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: kDefaultPadding / 2),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(name,
+                            style: const TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w700)),
+                        Text(NumberFormat('###,000').format(price),
+                            style: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w500)),
+                      ],
+                    ),
                   ),
                 ),
-                Expanded(
+                Padding(
+                  padding: const EdgeInsets.only(right: kDefaultPadding / 2),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -84,25 +88,29 @@ class ItemInCart extends StatelessWidget {
                         child: const Text(
                           '- ',
                           style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500),
+                              fontSize: 18, fontWeight: FontWeight.w500),
                         ),
                       ),
                       Text(
                         quantity.toStringAsFixed(1),
                         style: const TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.w500),
+                            fontSize: 14, fontWeight: FontWeight.w500),
                       ),
                       GestureDetector(
                         onTap: onPlusTap,
                         child: const Text(
                           ' +',
                           style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500),
+                              fontSize: 18, fontWeight: FontWeight.w500),
                         ),
                       ),
                       GestureDetector(
                         onTap: onDeleteTap,
-                        child: const Icon(Icons.delete, size: 16),
+                        child: const Icon(
+                          Icons.delete,
+                          size: 20,
+                          color: Colors.red,
+                        ),
                       )
                     ],
                   ),

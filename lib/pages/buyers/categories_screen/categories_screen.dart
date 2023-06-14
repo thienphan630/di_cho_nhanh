@@ -9,8 +9,9 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference<Map<String, dynamic>> categories =
-        FirebaseFirestore.instance.collection('Categories');
+    var categories = FirebaseFirestore.instance
+        .collection('Categories')
+        .where('numberOfItems', isGreaterThan: 0);
 
     Size size = MediaQuery.of(context).size;
 
@@ -18,7 +19,7 @@ class CategoriesScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF0EFEF),
       body: Stack(children: [
         Positioned(
-            top: -size.height / 1.3,
+            top: -size.height / 1.5,
             left: -size.width / 2,
             child: Container(
               width: size.width * 2,
@@ -27,8 +28,7 @@ class CategoriesScreen extends StatelessWidget {
                   shape: BoxShape.circle, color: Color(0xFF84CBFF)),
             )),
         Scaffold(
-          appBar: titleAppBar(
-              context: context, title: 'Danh mục sản phẩm'),
+          appBar: titleAppBar(context: context, title: 'Danh mục sản phẩm'),
           backgroundColor: Colors.transparent,
           body: Column(
             children: [

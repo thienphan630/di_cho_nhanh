@@ -210,6 +210,23 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                   type: productCategories(type),
                                   seller: sellerId)
                               .toMap());
+                          var categories = FirebaseFirestore.instance
+                              .collection('Categories')
+                              .where('type',
+                                  isEqualTo: productCategories(type));
+                          categories.get().then(
+                            (response) {
+                              for (var element in response.docs) {
+                                FirebaseFirestore.instance
+                                    .collection('Categories')
+                                    .doc(element.id)
+                                    .update({
+                                  'numberOfItems':
+                                      element.get('numberOfItems') + 1
+                                });
+                              }
+                            },
+                          );
                           snackbarMessage(
                               context: context,
                               message: 'Đăng hàng thành công');

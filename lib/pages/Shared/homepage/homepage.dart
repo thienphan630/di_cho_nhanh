@@ -113,8 +113,7 @@ Widget _topic(String topic) {
     padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0, 4.0),
     child: Text(
       topic,
-      style: const TextStyle(
-          fontFamily: 'Poppins', fontWeight: FontWeight.w600, fontSize: 15),
+      style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
     ),
   );
 }

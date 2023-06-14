@@ -13,13 +13,13 @@ class ChartScreen extends StatefulWidget {
 class _ChartScreenState extends State<ChartScreen> {
   var orders = FirebaseFirestore.instance
       .collection('order_history')
+      .orderBy('time')
       .where('sellerId', isEqualTo: getUserId());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          titleAppBar(context: context, title: 'Người đã mua hàng'),
+      appBar: titleAppBar(context: context, title: 'Người đã mua hàng'),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: orders.snapshots(),
         builder: (context, snapshot) {
@@ -81,5 +81,4 @@ class _ChartScreenState extends State<ChartScreen> {
   //     swapAnimationCurve: Curves.linear,
   //   ),
   // ),
-
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
@@ -76,19 +74,22 @@ deleteTap(
         actions: [
           TextButton(
               onPressed: () {
-                log(getUserId());
                 storage.doc(data.id).delete().then(
                       (value) => Navigator.of(context).pop(),
                     );
+
+                //delete product in order history
                 FirebaseFirestore.instance
                     .collection('order_history')
                     .where('productId', isEqualTo: data.id)
                     .get()
-                    .then((abc) {
-                  for (var element in abc.docs) {
+                    .then((res) {
+                  for (var element in res.docs) {
                     element.reference.delete();
                   }
                 });
+
+                //delete product in cart of user
                 FirebaseFirestore.instance
                     .collection('users')
                     .get()
@@ -105,6 +106,22 @@ deleteTap(
                     });
                   }
                 });
+                //reduce the number of products in the category
+                var categories = FirebaseFirestore.instance
+                    .collection('Categories')
+                    .where('type', isEqualTo: data.get('type'));
+                categories.get().then(
+                  (response) {
+                    for (var element in response.docs) {
+                      FirebaseFirestore.instance
+                          .collection('Categories')
+                          .doc(element.id)
+                          .update({
+                        'numberOfItems': element.get('numberOfItems') - 1
+                      });
+                    }
+                  },
+                );
               },
               child: const Text('Có')),
           TextButton(
