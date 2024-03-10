@@ -12,8 +12,10 @@ class ListProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: titleAppBar(
-          context: context, title: categoriName(type), isHavebackButton: true),
-      backgroundColor: const Color(0xFFF0EFEF),
+        context: context,
+        title: categoriName(type),
+        automaticallyImplyLeading: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 2 * kDefaultPadding),
         child: ListItems(type: type),

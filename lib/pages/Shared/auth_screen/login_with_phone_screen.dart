@@ -12,11 +12,11 @@ class LoginWithPhoneScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: kGrayBackgroundColor,
+      backgroundColor: AppColor.kGrayBackgroundColor,
       appBar: AppBar(
         toolbarHeight: size.height / 5,
         automaticallyImplyLeading: false,
-        backgroundColor: kGrayBackgroundColor,
+        backgroundColor: AppColor.kGrayBackgroundColor,
         elevation: 0,
         title: Text(
           auth.authType == AuthType.login
@@ -27,7 +27,7 @@ class LoginWithPhoneScreen extends StatelessWidget {
                   ? 'Đăng ký người mua'
                   : 'Đăng ký người bán',
           style: const TextStyle(
-              fontSize: 32, fontWeight: FontWeight.bold, color: kBlackColor),
+              fontSize: 32, fontWeight: FontWeight.bold, color: AppColor.kBlackColor),
         ),
       ),
       body: FormAuth(authentication: auth),

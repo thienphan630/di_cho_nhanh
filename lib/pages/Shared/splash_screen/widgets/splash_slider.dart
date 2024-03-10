@@ -69,7 +69,7 @@ class _SplashSliderState extends State<SplashSlider> {
                     Button(
                       text: 'Sign up',
                       width: size.width * 2 / 5,
-                      color: kPrimaryColor,
+                      color: AppColor.kPrimaryColor,
                       onPress: () {
                         Navigator.pushReplacementNamed(context, '/signup');
                       },
@@ -77,7 +77,7 @@ class _SplashSliderState extends State<SplashSlider> {
                     Button(
                       text: 'Log in',
                       width: size.width * 2 / 5,
-                      color: kSecondaryColor,
+                      color: AppColor.kSecondaryColor,
                       onPress: () {
                         Navigator.pushReplacementNamed(context, '/login');
                       },

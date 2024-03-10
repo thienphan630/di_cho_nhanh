@@ -19,7 +19,7 @@ class Homepage extends StatelessWidget {
         appBar: AppBar(
             elevation: 0,
             automaticallyImplyLeading: false,
-            backgroundColor: kBackgroundColor,
+            backgroundColor: AppColor.kBackgroundColor,
             actions: const [
               CircleAvatar(
                 radius: 25,
@@ -63,7 +63,7 @@ class Homepage extends StatelessWidget {
             ),
           ),
         ),
-        backgroundColor: kBackgroundColor,
+        backgroundColor: AppColor.kBackgroundColor,
       ),
     );
   }
@@ -88,7 +88,7 @@ class TitleUserInfor extends StatelessWidget {
               children: [
                 const Text('Xin chào!',
                     style: TextStyle(
-                        color: kBlackColor,
+                        color: AppColor.kBlackColor,
                         fontSize: 14,
                         fontWeight: FontWeight.w400)),
                 Text(
@@ -96,7 +96,7 @@ class TitleUserInfor extends StatelessWidget {
                         ' ' +
                         snapshot.data!.get('lastName'),
                     style: const TextStyle(
-                        color: kBlackColor,
+                        color: AppColor.kBlackColor,
                         fontSize: 20,
                         fontWeight: FontWeight.w700)),
               ],

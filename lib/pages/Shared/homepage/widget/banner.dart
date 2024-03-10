@@ -42,7 +42,7 @@ class BannerCustom extends StatelessWidget {
                   'Sứ mệnh của thực phẩm sạch',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: kBlackColor,
+                      color: AppColor.kBlackColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w700),
                 ),
@@ -52,7 +52,7 @@ class BannerCustom extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 3,
                   style: TextStyle(
-                      color: kBlackColor,
+                      color: AppColor.kBlackColor,
                       fontSize: 11,
                       fontWeight: FontWeight.w400),
                 )

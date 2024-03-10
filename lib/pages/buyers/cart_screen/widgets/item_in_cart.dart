@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:di_cho_nhanh/constraints/color.dart';
+import 'package:di_cho_nhanh/constraints/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-import '../../../../constraints/styles.dart';
 
 class ItemInCart extends StatelessWidget {
   const ItemInCart({
@@ -53,7 +53,7 @@ class ItemInCart extends StatelessWidget {
             width: size.width * 3 / 5,
             height: 100,
             decoration: const BoxDecoration(
-                color: Colors.white,
+                color: AppColor.kWhiteColor,
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(10),
                     bottomRight: Radius.circular(10))),

@@ -27,7 +27,7 @@ class SplashScreen extends StatelessWidget {
             },
             child: const Text(
               'Skip',
-              style: TextStyle(color: kSecondaryTextColor, fontSize: 14),
+              style: TextStyle(color: AppColor.kSecondaryTextColor, fontSize: 14),
               textAlign: TextAlign.end,
             ),
           ),

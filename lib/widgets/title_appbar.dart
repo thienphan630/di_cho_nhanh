@@ -1,23 +1,21 @@
+import 'package:di_cho_nhanh/constraints/color.dart';
 import 'package:flutter/material.dart';
 
 PreferredSizeWidget titleAppBar(
     {required BuildContext context,
     required String title,
-    bool? isHavebackButton}) {
+    bool? automaticallyImplyLeading}) {
   return AppBar(
-    automaticallyImplyLeading: false,
+    automaticallyImplyLeading: automaticallyImplyLeading ?? false,
     centerTitle: true,
-    backgroundColor: Colors.white,
-    leading: (isHavebackButton != null && isHavebackButton)
-        ? BackButton(
-            color: Colors.black,
-            onPressed: (() => Navigator.pop(context)),
-          )
-        : null,
+    backgroundColor: AppColor.kAppBarBackgroundColor,
     title: Text(
       title,
       style: const TextStyle(
-          color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),
+        color: AppColor.kBlackColor,
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+      ),
     ),
   );
 }

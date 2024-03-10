@@ -13,16 +13,16 @@ class AuthScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: kGrayBackgroundColor,
+        backgroundColor: AppColor.kGrayBackgroundColor,
         appBar: AppBar(
           toolbarHeight: size.height / 5,
           automaticallyImplyLeading: false,
-          backgroundColor: kGrayBackgroundColor,
+          backgroundColor: AppColor.kGrayBackgroundColor,
           elevation: 0,
           title: const Text(
             'Đăng Nhập/ Đăng ký',
             style: TextStyle(
-                fontSize: 32, fontWeight: FontWeight.bold, color: kBlackColor),
+                fontSize: 32, fontWeight: FontWeight.bold, color: AppColor.kBlackColor),
           ),
         ),
         body: Column(

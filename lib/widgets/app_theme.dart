@@ -4,8 +4,8 @@ import '../constraints/constraints.dart';
 
 ThemeData theme() => ThemeData(
       fontFamily: 'Inter',
-      primaryColor: kPrimaryColor,
+      primaryColor: AppColor.kPrimaryColor,
       appBarTheme: const AppBarTheme(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: AppColor.kAppBarBackgroundColor,
       ),
     );

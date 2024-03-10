@@ -17,7 +17,7 @@ class Input extends StatelessWidget {
       Text(
         title,
         style: const TextStyle(
-            color: kSecondaryTextColor,
+            color: AppColor.kSecondaryTextColor,
             fontSize: 14,
             fontWeight: FontWeight.w400),
       ),

@@ -19,7 +19,7 @@ class ProductDetail extends StatelessWidget {
 
     return Scaffold(
       appBar: titleAppBar(
-          context: context, title: 'Chi tiết sản phẩm', isHavebackButton: true),
+          context: context, title: 'Chi tiết sản phẩm', automaticallyImplyLeading: true),
       body: SingleChildScrollView(
         child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
           stream: products.snapshots(),

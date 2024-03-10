@@ -35,9 +35,9 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   Widget build(BuildContext context) {
     Role role = context.watch<AuthProvider>().getRole;
     return BottomNavigationBar(
-        backgroundColor: kPrimaryColor,
-        fixedColor: kPrimaryColor,
-        unselectedItemColor: kGrayColor,
+        backgroundColor: AppColor.kPrimaryColor,
+        fixedColor: AppColor.kPrimaryColor,
+        unselectedItemColor: AppColor.kGrayColor,
         currentIndex: context.watch<BottomIndex>().bottomIndex,
         onTap: _onTap,
         items: role == Role.seller ? seller : buyer);

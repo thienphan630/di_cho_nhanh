@@ -7,7 +7,8 @@ class Button extends StatelessWidget {
     Key? key,
     required this.text,
     required this.width,
-    required this.color, required this.onPress,
+    required this.color,
+    required this.onPress,
   }) : super(key: key);
   final String text;
   final double width;
@@ -18,7 +19,7 @@ class Button extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: kPrimaryColor),
+        border: Border.all(color: AppColor.kPrimaryColor),
         color: color,
       ),
       width: width,
@@ -28,7 +29,9 @@ class Button extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: color == kPrimaryColor ? kSecondaryColor : kPrimaryColor,
+            color: color == AppColor.kPrimaryColor
+                ? AppColor.kSecondaryColor
+                : AppColor.kPrimaryColor,
             fontWeight: FontWeight.w500,
             fontSize: 16,
           ),

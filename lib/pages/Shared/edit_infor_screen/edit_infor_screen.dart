@@ -87,7 +87,7 @@ class EditInforScreen extends StatelessWidget {
       appBar: titleAppBar(
           context: context,
           title: 'Chỉnh sửa thông tin',
-          isHavebackButton: true),
+          automaticallyImplyLeading: true),
       body: SingleChildScrollView(
         child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
           stream: user.snapshots(),

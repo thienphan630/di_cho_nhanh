@@ -68,7 +68,7 @@ class _FormAuthState extends State<FormAuth> {
       key: _scaffoldkey,
       body: Container(
         decoration: const BoxDecoration(
-          color: kSecondaryColor,
+          color: AppColor.kSecondaryColor,
           borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
         child: Padding(
